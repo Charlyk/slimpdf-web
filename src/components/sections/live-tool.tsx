@@ -98,7 +98,7 @@ export function LiveToolSection() {
   }
 
   return (
-    <section className="border-y-2 border-border bg-secondary-background py-16 sm:py-24">
+    <section className="border-t-[3px] border-border bg-secondary-background py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl">
           {/* Tool Tabs */}

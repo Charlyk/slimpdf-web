@@ -72,3 +72,48 @@
     @apply font-heading;
   }
 }
+
+@layer utilities {
+  .bg-grid {
+    background-image: linear-gradient(to right, #80808033 1px, transparent 1px),
+      linear-gradient(to bottom, #80808033 1px, transparent 1px);
+    background-size: 70px 70px;
+  }
+
+  .dark .bg-grid {
+    background-image: linear-gradient(to right, #80808040 1px, transparent 1px),
+      linear-gradient(to bottom, #80808040 1px, transparent 1px);
+  }
+
+  .bg-grid-dark {
+    background-image: linear-gradient(to right, #00000025 1px, transparent 1px),
+      linear-gradient(to bottom, #00000025 1px, transparent 1px);
+    background-size: 70px 70px;
+  }
+
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+
+  .animate-marquee2 {
+    animation: marquee2 20s linear infinite;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee2 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}

@@ -28,7 +28,7 @@ export function Footer() {
   const { setTheme, resolvedTheme } = useTheme()
 
   return (
-    <footer className="border-t-2 border-border">
+    <footer className="border-t-[3px] border-border">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
           {/* Brand */}
@@ -88,7 +88,7 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t-2 border-border pt-8 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t-[3px] border-border pt-8 sm:flex-row">
           <p className="text-sm">
             &copy; {new Date().getFullYear()} SlimPDF. All rights reserved.
           </p>

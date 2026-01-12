@@ -46,7 +46,7 @@ export function PricingSection() {
   const isYearly = billingPeriod === "yearly"
 
   return (
-    <section className="border-t-2 border-border py-20 sm:py-32">
+    <section className="border-y-[3px] border-border bg-secondary-background py-20 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center">
@@ -63,7 +63,7 @@ export function PricingSection() {
               <TabsList>
                 <TabsTrigger value="monthly">Monthly</TabsTrigger>
                 <TabsTrigger value="yearly">
-                  Yearly <span className="ml-1 text-chart-1">-54%</span>
+                  Yearly <span className="ml-1 text-black font-bold">-54%</span>
                 </TabsTrigger>
               </TabsList>
             </div>
@@ -86,8 +86,8 @@ export function PricingSection() {
                 </Badge>
               )}
               <CardHeader>
-                <CardTitle className="text-xl">{plan.name}</CardTitle>
-                <CardDescription>{plan.description}</CardDescription>
+                <CardTitle className="text-2xl">{plan.name}</CardTitle>
+                <CardDescription className="text-xl">{plan.description}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="mb-6">
@@ -99,11 +99,11 @@ export function PricingSection() {
                   )}
                 </div>
                 {plan.price.monthly > 0 && isYearly && (
-                  <p className="mb-6 text-sm">$4.08/month billed annually</p>
+                  <p className="mb-6 text-base">$4.08/month billed annually</p>
                 )}
                 <ul className="space-y-3">
                   {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3 text-sm">
+                    <li key={feature} className="flex items-start gap-3 text-base">
                       <Check className="mt-0.5 size-4 shrink-0 text-chart-1" />
                       <span>{feature}</span>
                     </li>
@@ -113,12 +113,12 @@ export function PricingSection() {
               <CardFooter className="flex-col gap-3">
                 <Button
                   variant={plan.popular ? "default" : "neutral"}
-                  className="w-full"
+                  className="w-full text-xl py-6"
                 >
                   {plan.cta}
                 </Button>
                 {plan.popular && (
-                  <p className="text-center text-xs">
+                  <p className="text-center text-base">
                     7-day free trial · Cancel anytime
                   </p>
                 )}

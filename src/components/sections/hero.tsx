@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 
 export function HeroSection() {
   return (
-    <section className="py-20 sm:py-32">
+    <section className="bg-grid py-20 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           {/* Badge */}
@@ -31,13 +31,13 @@ export function HeroSection() {
 
           {/* CTAs */}
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button size="lg" asChild>
+            <Button className="text-xl px-8 py-6" asChild>
               <Link href="/compress">
                 Start compressing
-                <ArrowRight className="size-4" />
+                <ArrowRight className="size-5" />
               </Link>
             </Button>
-            <Button variant="neutral" size="lg" asChild>
+            <Button variant="neutral" className="text-xl px-8 py-6" asChild>
               <Link href="/pricing">
                 View pricing
               </Link>

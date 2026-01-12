@@ -45,7 +45,7 @@ export function FAQSection() {
             {faqs.map((faq, index) => (
               <AccordionItem key={faq.question} value={`item-${index}`}>
                 <AccordionTrigger>{faq.question}</AccordionTrigger>
-                <AccordionContent>{faq.answer}</AccordionContent>
+                <AccordionContent className="text-base">{faq.answer}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>

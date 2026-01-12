@@ -2,6 +2,7 @@ import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { HeroSection } from "@/components/sections/hero"
 import { LiveToolSection } from "@/components/sections/live-tool"
+import { MarqueeFeaturesSection } from "@/components/sections/marquee-features"
 import { FeaturesSection } from "@/components/sections/features"
 import { PricingSection } from "@/components/sections/pricing"
 import { FAQSection } from "@/components/sections/faq"
@@ -14,6 +15,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <LiveToolSection />
+        <MarqueeFeaturesSection />
         <FeaturesSection />
         <PricingSection />
         <FAQSection />

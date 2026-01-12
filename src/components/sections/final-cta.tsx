@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 
 export function FinalCTASection() {
   return (
-    <section className="border-t-2 border-border bg-secondary-background py-16 sm:py-20">
+    <section className="bg-grid-dark border-t-[3px] border-border bg-main py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Card className="mx-auto max-w-2xl text-center">
           <CardContent className="py-10">
@@ -15,10 +15,10 @@ export function FinalCTASection() {
 
             {/* CTA Buttons */}
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button size="lg" asChild>
+              <Button className="text-xl px-8 py-6" asChild>
                 <Link href="/compress">Compress PDF Free</Link>
               </Button>
-              <Button variant="neutral" size="lg" asChild>
+              <Button variant="neutral" className="text-xl px-8 py-6" asChild>
                 <Link href="/pricing">View Pricing</Link>
               </Button>
             </div>
