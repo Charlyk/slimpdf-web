@@ -1,5 +1,7 @@
 import { FileDown, Target, Zap, Code, Clock, Shield } from "lucide-react"
 
+import { Card, CardContent } from "@/components/ui/card"
+
 const features = [
   {
     icon: FileDown,
@@ -39,26 +41,28 @@ export function FeaturesSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-heading tracking-tight sm:text-4xl">
             Everything you need for PDF compression
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-4 text-lg">
             Professional tools without the enterprise price tag
           </p>
         </div>
 
         {/* Feature Grid */}
-        <div className="mx-auto mt-16 grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto mt-16 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
-            <div key={feature.title} className="group">
-              <div className="mb-4 inline-flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary transition-transform group-hover:scale-110">
-                <feature.icon className="size-5" />
-              </div>
-              <h3 className="font-semibold">{feature.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                {feature.description}
-              </p>
-            </div>
+            <Card key={feature.title} className="transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none">
+              <CardContent className="p-6">
+                <div className="mb-4 inline-flex size-12 items-center justify-center rounded-base border-2 border-border bg-main text-main-foreground">
+                  <feature.icon className="size-6" />
+                </div>
+                <h3 className="font-heading text-lg">{feature.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed">
+                  {feature.description}
+                </p>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>

@@ -132,7 +132,7 @@ slimpdf-web/
 - **Framework:** Next.js 15 (App Router)
 - **Language:** TypeScript (strict mode)
 - **Styling:** Tailwind CSS
-- **UI Components:** shadcn/ui
+- **UI Components:** shadcn/ui (https://www.neobrutalism.dev/)
 - **Authentication:** Auth.js v5 (NextAuth)
 - **Payments:** Stripe Checkout + Customer Portal
 - **State:** React Query for server state
@@ -217,7 +217,7 @@ async function uploadFile(file: any): Promise<any> {
 
 ### Components
 
-Use functional components with TypeScript interfaces.
+Use functional components with TypeScript interfaces. Use existent UI components, create new ones only if there is a clear need for customization or functionality that cannot be achieved with existing components.
 
 ```typescript
 interface FileUploadProps {

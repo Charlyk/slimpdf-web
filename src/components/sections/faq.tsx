@@ -1,9 +1,11 @@
 "use client"
 
-import { useState } from "react"
-import { ChevronDown } from "lucide-react"
-
-import { cn } from "@/lib/utils"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 const faqs = [
   {
@@ -29,42 +31,24 @@ const faqs = [
 ]
 
 export function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0)
-
   return (
     <section className="py-20 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-heading tracking-tight sm:text-4xl">
             Frequently asked questions
           </h2>
         </div>
 
-        <div className="mx-auto mt-12 max-w-3xl divide-y divide-border">
-          {faqs.map((faq, index) => (
-            <div key={faq.question} className="py-5">
-              <button
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="flex w-full items-center justify-between text-left"
-              >
-                <span className="font-medium">{faq.question}</span>
-                <ChevronDown
-                  className={cn(
-                    "size-5 shrink-0 text-muted-foreground transition-transform",
-                    openIndex === index && "rotate-180"
-                  )}
-                />
-              </button>
-              <div
-                className={cn(
-                  "overflow-hidden transition-all",
-                  openIndex === index ? "mt-4 max-h-96" : "max-h-0"
-                )}
-              >
-                <p className="text-muted-foreground">{faq.answer}</p>
-              </div>
-            </div>
-          ))}
+        <div className="mx-auto mt-12 max-w-3xl">
+          <Accordion type="single" collapsible defaultValue="item-0" className="space-y-4">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={faq.question} value={`item-${index}`}>
+                <AccordionTrigger>{faq.question}</AccordionTrigger>
+                <AccordionContent>{faq.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </div>
     </section>
