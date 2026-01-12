@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Upload, File, X } from "lucide-react"
+import { File, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "./button"

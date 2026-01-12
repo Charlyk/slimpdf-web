@@ -34,11 +34,12 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     },
     ref
   ) => {
+    const generatedId = React.useId()
     const [isFocused, setIsFocused] = React.useState(false)
     const [hasValue, setHasValue] = React.useState(
       !!props.value || !!props.defaultValue
     )
-    const inputId = id || React.useId()
+    const inputId = id || generatedId
 
     const sizeClasses = {
       sm: "h-8 text-sm",
