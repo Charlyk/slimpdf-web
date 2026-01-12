@@ -1,3 +1,7 @@
+// src/types.ts
+var API_URL_PRODUCTION = "https://api.slimpdf.io";
+var API_URL_DEVELOPMENT = "https://dev.api.slimpdf.io";
+
 // src/errors.ts
 var SlimPdfError = class _SlimPdfError extends Error {
   constructor(statusCode, message, detail) {
@@ -497,10 +501,11 @@ var ApiKeysClient = class {
 
 // src/client.ts
 var SlimPdfClient = class {
-  constructor(options) {
+  constructor(options = {}) {
     this._accessToken = options.accessToken;
+    const baseUrl = options.baseUrl ?? (options.environment === "development" ? API_URL_DEVELOPMENT : API_URL_PRODUCTION);
     this.ctx = {
-      baseUrl: options.baseUrl.replace(/\/$/, ""),
+      baseUrl: baseUrl.replace(/\/$/, ""),
       // Remove trailing slash
       getAccessToken: () => this._accessToken,
       fetch: options.fetch || globalThis.fetch.bind(globalThis)
@@ -534,6 +539,6 @@ var SlimPdfClient = class {
   }
 };
 
-export { ApiKeysClient, AuthClient, AuthenticationError, BillingClient, CompressClient, FileSizeError, ForbiddenError, ImageToPdfClient, JobExpiredError, JobFailedError, JobsClient, MergeClient, NotFoundError, PollingTimeoutError, ProcessingError, RateLimitError, SlimPdfClient, SlimPdfError, ValidationError };
+export { API_URL_DEVELOPMENT, API_URL_PRODUCTION, ApiKeysClient, AuthClient, AuthenticationError, BillingClient, CompressClient, FileSizeError, ForbiddenError, ImageToPdfClient, JobExpiredError, JobFailedError, JobsClient, MergeClient, NotFoundError, PollingTimeoutError, ProcessingError, RateLimitError, SlimPdfClient, SlimPdfError, ValidationError };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

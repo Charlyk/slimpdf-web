@@ -7,9 +7,25 @@ type JobStatus = 'pending' | 'processing' | 'completed' | 'failed';
 type ToolType = 'compress' | 'merge' | 'image_to_pdf';
 type Plan = 'free' | 'pro';
 type BillingInterval = 'month' | 'year';
+type ApiEnvironment = 'development' | 'production';
+/** Production API URL */
+declare const API_URL_PRODUCTION = "https://api.slimpdf.io";
+/** Development API URL */
+declare const API_URL_DEVELOPMENT = "https://dev.api.slimpdf.io";
 interface ClientOptions {
-    /** Base URL of the SlimPDF API (e.g., 'https://api.slimpdf.io') */
-    baseUrl: string;
+    /**
+     * Base URL of the SlimPDF API.
+     * If not provided, will be determined by the `environment` option.
+     * @example 'https://api.slimpdf.io'
+     */
+    baseUrl?: string;
+    /**
+     * API environment to use. Defaults to 'production'.
+     * - 'production': https://api.slimpdf.io
+     * - 'development': https://dev.api.slimpdf.io
+     * Ignored if `baseUrl` is provided.
+     */
+    environment?: ApiEnvironment;
     /** Optional access token (JWT or API key) for authenticated requests */
     accessToken?: string;
     /** Optional custom fetch function for testing or custom implementations */
@@ -359,9 +375,16 @@ declare class ApiKeysClient {
  *
  * @example
  * ```typescript
+ * // Using environment (recommended)
+ * const client = new SlimPdfClient({
+ *   environment: 'production', // or 'development'
+ *   accessToken: 'your-jwt-or-api-key', // optional
+ * });
+ *
+ * // Or with explicit baseUrl
  * const client = new SlimPdfClient({
  *   baseUrl: 'https://api.slimpdf.io',
- *   accessToken: 'your-jwt-or-api-key', // optional
+ *   accessToken: 'your-jwt-or-api-key',
  * });
  *
  * // Compress a PDF
@@ -392,7 +415,7 @@ declare class SlimPdfClient {
     readonly billing: BillingClient;
     /** API key management (Pro) */
     readonly apiKeys: ApiKeysClient;
-    constructor(options: ClientOptions);
+    constructor(options?: ClientOptions);
     /**
      * Set the access token for authenticated requests
      * Can be a JWT token or an API key (sk_live_...)
@@ -483,4 +506,4 @@ declare class JobFailedError extends SlimPdfError {
     constructor(jobId: string, errorMessage: string);
 }
 
-export { type ApiKey, type ApiKeyCreateResponse, ApiKeysClient, AuthClient, type AuthTokenResponse, AuthenticationError, BillingClient, type BillingInterval, type CheckoutResponse, type ClientOptions, CompressClient, type CompressOptions, type CompressResponse, type CompressionQuality, type ErrorResponse, FileSizeError, ForbiddenError, ImageToPdfClient, type ImageToPdfOptions, type ImageToPdfResponse, JobExpiredError, JobFailedError, type JobResult, type JobStatus, type JobStatusResponse, JobsClient, type MeResponse, MergeClient, type MergeResponse, NotFoundError, type PageSize, type Plan, type PollOptions, PollingTimeoutError, type PortalResponse, ProcessingError, RateLimitError, SlimPdfClient, SlimPdfError, type ToolType, type UsageResponse, type UsageStats, type User, ValidationError, type VerifyResponse };
+export { API_URL_DEVELOPMENT, API_URL_PRODUCTION, type ApiEnvironment, type ApiKey, type ApiKeyCreateResponse, ApiKeysClient, AuthClient, type AuthTokenResponse, AuthenticationError, BillingClient, type BillingInterval, type CheckoutResponse, type ClientOptions, CompressClient, type CompressOptions, type CompressResponse, type CompressionQuality, type ErrorResponse, FileSizeError, ForbiddenError, ImageToPdfClient, type ImageToPdfOptions, type ImageToPdfResponse, JobExpiredError, JobFailedError, type JobResult, type JobStatus, type JobStatusResponse, JobsClient, type MeResponse, MergeClient, type MergeResponse, NotFoundError, type PageSize, type Plan, type PollOptions, PollingTimeoutError, type PortalResponse, ProcessingError, RateLimitError, SlimPdfClient, SlimPdfError, type ToolType, type UsageResponse, type UsageStats, type User, ValidationError, type VerifyResponse };

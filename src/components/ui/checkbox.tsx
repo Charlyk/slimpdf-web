@@ -1,54 +1,30 @@
 "use client"
 
-import * as React from "react"
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
-import { CheckIcon, MinusIcon } from "lucide-react"
+import { Check } from "lucide-react"
+
+import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-interface CheckboxProps
-  extends React.ComponentProps<typeof CheckboxPrimitive.Root> {
-  indeterminate?: boolean
-}
-
 function Checkbox({
   className,
-  indeterminate,
   ...props
-}: CheckboxProps) {
+}: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
   return (
     <CheckboxPrimitive.Root
       data-slot="checkbox"
       className={cn(
-        // Base
-        "peer size-5 shrink-0 rounded border-2 transition-all duration-200 outline-none",
-        // Default state
-        "border-grey-30 bg-white",
-        // Hover
-        "hover:border-brand-50",
-        // Checked state
-        "data-[state=checked]:bg-brand-60 data-[state=checked]:border-brand-60 data-[state=checked]:text-white",
-        // Indeterminate state
-        "data-[state=indeterminate]:bg-brand-60 data-[state=indeterminate]:border-brand-60 data-[state=indeterminate]:text-white",
-        // Focus
-        "focus-visible:ring-2 focus-visible:ring-brand-50/20 focus-visible:ring-offset-2",
-        // Disabled
-        "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-grey-10",
-        // Error
-        "aria-invalid:border-red-60 aria-invalid:data-[state=checked]:bg-red-60 aria-invalid:data-[state=checked]:border-red-60",
-        className
+        "peer size-4 shrink-0 outline-2 outline-border ring-offset-white focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-main data-[state=checked]:text-white",
+        className,
       )}
       {...props}
     >
       <CheckboxPrimitive.Indicator
         data-slot="checkbox-indicator"
-        className="flex items-center justify-center text-current"
+        className={cn("flex items-center justify-center text-current")}
       >
-        {indeterminate ? (
-          <MinusIcon className="size-3.5 stroke-[3]" />
-        ) : (
-          <CheckIcon className="size-3.5 stroke-[3]" />
-        )}
+        <Check className="size-4 text-main-foreground" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   )
