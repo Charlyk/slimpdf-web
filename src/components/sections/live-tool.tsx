@@ -106,8 +106,8 @@ export function LiveToolSection() {
             <div className="mb-6 flex justify-center">
               <TabsList>
                 {tools.map((tool) => (
-                  <TabsTrigger key={tool.id} value={tool.id} className="gap-2">
-                    <tool.icon className="size-4" />
+                  <TabsTrigger key={tool.id} value={tool.id} className="gap-2 text-lg">
+                    <tool.icon className="size-5" />
                     {tool.label}
                   </TabsTrigger>
                 ))}
