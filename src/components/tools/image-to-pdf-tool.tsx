@@ -11,14 +11,14 @@ import {
   AlertCircle,
   GripVertical,
 } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
-import { SlimPdfClient, type PageSize, type JobResult, type RateLimitInfo } from "@/lib/slimpdf-client/dist"
+import { SlimPdfClient, type PageSize, type JobResult, type RateLimitInfo, type SupportedLanguage } from "@/lib/slimpdf-client/dist"
 import { cn } from "@/lib/utils"
 
 const API_URL = process.env.NODE_ENV === "production"
@@ -69,6 +69,10 @@ export function ImageToPdfTool({ className }: ImageToPdfToolProps) {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const t = useTranslations("imageToPdf.tool")
+  const locale = useLocale()
+
+  // Set language for API responses
+  client.setLanguage(locale as SupportedLanguage)
 
   const handleFilesSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = Array.from(e.target.files || [])
