@@ -1,0 +1,321 @@
+{
+  "metadata": {
+    "title": "Compress PDF Online Free - Up to 90% Smaller | SlimPDF",
+    "description": "Compress PDF online free - Reduce PDF size up to 90% with no signup required. Professional Ghostscript compression for documents, email, and storage."
+  },
+  "common": {
+    "brandName": "SlimPDF",
+    "getStarted": "Get started",
+    "logIn": "Log in",
+    "viewPricing": "View pricing",
+    "compressPdf": "Compress PDF",
+    "downloadPdf": "Download PDF"
+  },
+  "navbar": {
+    "links": {
+      "compress": "Compress",
+      "merge": "Merge",
+      "imageToPdf": "Image to PDF",
+      "pricing": "Pricing",
+      "api": "API"
+    }
+  },
+  "home": {
+    "hero": {
+      "badge": "Server-powered compression",
+      "title": "Compress PDF Online —",
+      "titleHighlight": "Up to 90% Smaller",
+      "titleSuffix": ", Free, No Sign Up",
+      "subtitle": "Compress your PDF documents online instantly with professional-grade Ghostscript technology. Achieve up to 90% file size reduction while maintaining quality. No sign-up required, no watermarks, and files are automatically deleted after download. Free PDF compression for email, archival, or storage—works on Mac, Windows, and Linux.",
+      "ctaPrimary": "Compress PDF Free - No Sign Up",
+      "ctaSecondary": "View pricing",
+      "trustIndicator": "Trusted by {count} developers and businesses worldwide"
+    },
+    "howItWorks": {
+      "title": "How to Compress PDF Online in 3 Simple Steps",
+      "subtitle": "Reduce your PDF file size without losing quality",
+      "steps": {
+        "upload": {
+          "title": "Upload Your PDF",
+          "description": "Click to browse or drag and drop your PDF file. Supports files up to 20MB free, 100MB with Pro."
+        },
+        "choose": {
+          "title": "Choose Compression Level",
+          "description": "Select your compression preference - standard for most uses, or target a specific file size (great for email attachments)."
+        },
+        "download": {
+          "title": "Download Your Compressed PDF",
+          "description": "Get your compressed document instantly. No registration required, no watermarks added."
+        }
+      }
+    },
+    "liveTool": {
+      "tabs": {
+        "compress": "Compress",
+        "merge": "Merge",
+        "imageToPdf": "Image to PDF"
+      },
+      "dropzone": {
+        "title": "Drop files here or click to browse",
+        "limits": "Max 20MB free · 100MB with Pro"
+      },
+      "quality": {
+        "label": "Quality:",
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High"
+      },
+      "actions": {
+        "compressPdf": "Compress PDF",
+        "mergePdfs": "Merge PDFs",
+        "convertToPdf": "Convert to PDF"
+      },
+      "processing": {
+        "title": "Processing..."
+      },
+      "complete": {
+        "title": "Compression complete!",
+        "reduction": "{percent}% smaller",
+        "download": "Download PDF",
+        "compressAnother": "Compress another file"
+      }
+    },
+    "useCases": {
+      "title": "Compress PDF for Any Purpose",
+      "subtitle": "Whether you need to send via email, save storage, or share files, we've got you covered",
+      "items": {
+        "email": {
+          "title": "Compress PDF for Email",
+          "description": "Reduce large PDFs to under 10MB or 5MB for reliable email transmission without size restrictions."
+        },
+        "quality": {
+          "title": "High Quality Compression",
+          "description": "Maintain document clarity and text readability while reducing file size dramatically. Professional results every time."
+        },
+        "mac": {
+          "title": "Compress PDF on Mac",
+          "description": "Works seamlessly on macOS. No software installation needed—compress PDFs directly in your browser."
+        },
+        "largeFiles": {
+          "title": "Compress Large PDF Files",
+          "description": "Handle PDFs 50MB, 100MB, or larger with Pro tier. Batch process multiple files at once."
+        },
+        "specificSize": {
+          "title": "Compress to Specific Sizes",
+          "description": "Need your PDF under 5MB, 3MB, or 1MB? Set your target size and we'll compress to exactly that."
+        },
+        "secure": {
+          "title": "Private & Secure Compression",
+          "description": "256-bit encryption, GDPR compliant. Files deleted automatically. Your privacy is guaranteed."
+        }
+      }
+    },
+    "marqueeFeatures": {
+      "n8nIntegration": "n8n Integration",
+      "makeIntegration": "Make Integration",
+      "zapierIntegration": "Zapier Integration",
+      "restApiAccess": "REST API Access",
+      "autoDeletion": "Auto-deletion",
+      "apiRequestsPerHour": "100+ API Requests/hour",
+      "webhookSupport": "Webhook Support",
+      "cliTools": "CLI Tools"
+    },
+    "features": {
+      "compression": {
+        "title": "90% compression",
+        "description": "Server-side Ghostscript delivers professional-grade compression that browser tools can't match."
+      },
+      "targetSize": {
+        "title": "Target exact sizes",
+        "description": "Need under 10MB for email? Set a target size and we'll compress until we hit it."
+      },
+      "batchProcessing": {
+        "title": "Batch processing",
+        "description": "Process up to 20 files at once. Download as a single ZIP file."
+      },
+      "security": {
+        "title": "Private & secure",
+        "description": "256-bit encryption. GDPR compliant. Files auto-deleted after processing."
+      }
+    },
+    "trustSignals": {
+      "title": "Why Choose SlimPDF?",
+      "items": {
+        "encryption": {
+          "title": "256-Bit Encryption",
+          "description": "Your PDFs are encrypted in transit and at rest. Industry-standard security for peace of mind."
+        },
+        "instant": {
+          "title": "Instant Compression",
+          "description": "No waiting. Your PDF is compressed and ready to download within seconds."
+        },
+        "autoDelete": {
+          "title": "Auto-Deleted Files",
+          "description": "Files are automatically deleted after download. We never store your PDFs."
+        },
+        "gdpr": {
+          "title": "GDPR Compliant",
+          "description": "Full compliance with GDPR, CCPA, and international privacy regulations."
+        },
+        "professional": {
+          "title": "Professional Grade",
+          "description": "Same compression technology used by professional print shops worldwide."
+        },
+        "trusted": {
+          "title": "Trusted Globally",
+          "description": "Used by 2,500+ developers and businesses worldwide for reliable PDF compression."
+        }
+      }
+    },
+    "pricing": {
+      "title": "Simple, transparent pricing",
+      "subtitle": "Start free, upgrade when you need more",
+      "billingToggle": {
+        "monthly": "Monthly",
+        "yearly": "Yearly",
+        "yearlyDiscount": "-54%"
+      },
+      "period": {
+        "year": "/year",
+        "month": "/month"
+      },
+      "billedAnnually": "$4.08/month billed annually",
+      "mostPopular": "Most popular",
+      "trialInfo": "7-day free trial · Cancel anytime",
+      "custom": "Custom",
+      "plans": {
+        "free": {
+          "name": "Free",
+          "description": "For occasional use",
+          "cta": "Get started",
+          "features": {
+            "filesPerDay": "2 files per day",
+            "maxFileSize": "20MB max file size",
+            "compression": "Standard compression",
+            "downloadLinks": "1-hour download links"
+          }
+        },
+        "pro": {
+          "name": "Pro",
+          "description": "For power users",
+          "cta": "Start free trial",
+          "features": {
+            "unlimitedFiles": "Unlimited files",
+            "maxFileSize": "100MB max file size",
+            "targetSize": "Target exact file size",
+            "batchProcessing": "Batch processing (20 files)",
+            "apiAccess": "API access included",
+            "downloadLinks": "24-hour download links",
+            "priorityProcessing": "Priority processing"
+          }
+        },
+        "business": {
+          "name": "Business",
+          "description": "For teams & enterprises",
+          "cta": "Get in touch",
+          "features": {
+            "everythingInPro": "Everything in Pro",
+            "unlimitedFileSize": "Unlimited file size",
+            "dedicatedSupport": "Dedicated support",
+            "customIntegrations": "Custom integrations",
+            "sla": "99.9% SLA guarantee",
+            "onPremise": "On-premise deployment"
+          }
+        }
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions About PDF Compression",
+      "items": {
+        "browserTools": {
+          "question": "How is this different from browser-based tools?",
+          "answer": "SlimPDF uses server-side Ghostscript, the same engine used by professional print shops. Browser tools are limited to JavaScript compression which typically achieves 20-40% reduction. We achieve up to 90%."
+        },
+        "security": {
+          "question": "Are my files secure?",
+          "answer": "Yes. All transfers use 256-bit encryption. Files are automatically deleted after 1 hour (free) or 24 hours (Pro). We never store or analyze your file contents."
+        },
+        "targetSize": {
+          "question": "Can I compress to a specific file size?",
+          "answer": "Yes! Pro users can set a target size like \"under 10MB\" for email. We'll iterate compression until we hit your target while maintaining readable quality."
+        },
+        "watermarks": {
+          "question": "Do you add watermarks?",
+          "answer": "Never. Your PDF comes out clean on all plans. We believe watermarks ruin the user experience."
+        },
+        "apiAccess": {
+          "question": "What's included in API access?",
+          "answer": "Pro subscribers get full REST API access for compression, merging, and image-to-PDF. Simple endpoints, code examples in multiple languages, and 100 requests/hour."
+        },
+        "quality": {
+          "question": "Does compression reduce PDF quality?",
+          "answer": "No. SlimPDF uses intelligent compression that removes unnecessary data while preserving text clarity and image quality. We achieve up to 90% size reduction without making PDFs look blurry or illegible."
+        },
+        "specificSizes": {
+          "question": "Can I compress PDF to 5MB, 3MB, 1MB, or under 500KB?",
+          "answer": "Yes! Our \"Target Exact Size\" feature lets you specify your desired file size (5MB, 3MB, 1MB, 500KB, etc.) and we'll compress your PDF until it reaches that target. This is especially useful for email attachments."
+        },
+        "signup": {
+          "question": "Do I need to sign up to compress PDFs?",
+          "answer": "No sign-up required for our free tier. You can compress up to 2 PDFs per day without creating an account. For unlimited compressions, upgrade to Pro with just one click."
+        },
+        "platforms": {
+          "question": "Can I compress PDFs on Mac, Windows, and Linux?",
+          "answer": "Yes! SlimPDF is a web-based tool that works on any device with a browser—Mac, Windows, Linux, iPad, and more. No software installation needed."
+        },
+        "largePdf": {
+          "question": "What's the best way to compress a large PDF?",
+          "answer": "Upload your PDF to SlimPDF and let our Ghostscript engine do the work. For very large files (100MB+), use our Pro tier for 100MB support and batch processing of multiple files at once."
+        },
+        "email": {
+          "question": "Can I compress PDF files for email?",
+          "answer": "Absolutely. Many email providers limit attachment sizes to 25MB. Our compression typically reduces files by 60-90%, making them ideal for email. Use our \"Target Exact Size\" feature to compress to under 10MB or 5MB."
+        },
+        "batch": {
+          "question": "Can I batch compress multiple PDF files?",
+          "answer": "Yes. With Pro tier, you can upload up to 20 PDF files at once and compress them all together. Download the results as a single ZIP file."
+        },
+        "fileSizes": {
+          "question": "What file sizes can I compress—5MB, 10MB, 50MB, 100MB?",
+          "answer": "Free tier supports up to 20MB per file (2 per day). Pro tier handles up to 100MB files with unlimited daily compressions. Whether your PDF is 5MB, 10MB, 50MB, or 100MB, we can compress it."
+        }
+      }
+    },
+    "finalCta": {
+      "title": "Compress Your PDF Online Today",
+      "subtitle": "Free compression, no sign-up required. Reduce file size while keeping quality intact.",
+      "ctaPrimary": "Compress PDF Free Now",
+      "ctaSecondary": "See Pro Features",
+      "benefits": {
+        "noSignup": "No signup required for free tier",
+        "noWatermarks": "No watermarks",
+        "autoDeleted": "Files auto-deleted"
+      }
+    }
+  },
+  "footer": {
+    "description": "Professional PDF compression that actually works. Server-powered tools for developers and businesses.",
+    "sections": {
+      "tools": {
+        "title": "Tools",
+        "compressPdf": "Compress PDF",
+        "mergePdf": "Merge PDF",
+        "imageToPdf": "Image to PDF",
+        "apiDocs": "API Docs"
+      },
+      "company": {
+        "title": "Company",
+        "about": "About",
+        "blog": "Blog",
+        "contact": "Contact"
+      },
+      "legal": {
+        "title": "Legal",
+        "privacy": "Privacy",
+        "terms": "Terms"
+      }
+    },
+    "copyright": "© {year} SlimPDF. All rights reserved.",
+    "toggleTheme": "Toggle theme"
+  }
+}

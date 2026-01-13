@@ -2,30 +2,33 @@
 
 import Link from "next/link"
 import { FileText, Sun, Moon } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 import { useTheme } from "@/components/theme-provider"
 import { Button } from "@/components/ui/button"
 
-const footerLinks = {
+const footerLinkKeys = {
   tools: [
-    { href: "/compress", label: "Compress PDF" },
-    { href: "/merge", label: "Merge PDF" },
-    { href: "/image-to-pdf", label: "Image to PDF" },
-    { href: "/docs/api", label: "API Docs" },
+    { href: "/compress", key: "compressPdf" },
+    { href: "/merge", key: "mergePdf" },
+    { href: "/image-to-pdf", key: "imageToPdf" },
+    { href: "/docs/api", key: "apiDocs" },
   ],
   company: [
-    { href: "/about", label: "About" },
-    { href: "/blog", label: "Blog" },
-    { href: "/contact", label: "Contact" },
+    { href: "/about", key: "about" },
+    { href: "/blog", key: "blog" },
+    { href: "/contact", key: "contact" },
   ],
   legal: [
-    { href: "/privacy", label: "Privacy" },
-    { href: "/terms", label: "Terms" },
+    { href: "/privacy", key: "privacy" },
+    { href: "/terms", key: "terms" },
   ],
 }
 
 export function Footer() {
   const { setTheme, resolvedTheme } = useTheme()
+  const t = useTranslations("footer")
+  const tCommon = useTranslations("common")
 
   return (
     <footer className="border-t-[3px] border-border">
@@ -37,21 +40,21 @@ export function Footer() {
               <div className="flex size-8 items-center justify-center rounded-base border-2 border-border bg-main">
                 <FileText className="size-5 text-main-foreground" />
               </div>
-              <span className="text-xl font-heading">SlimPDF</span>
+              <span className="text-xl font-heading">{tCommon("brandName")}</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm">
-              Professional PDF compression that actually works. Server-powered tools for developers and businesses.
+              {t("description")}
             </p>
           </div>
 
           {/* Tools */}
           <div>
-            <h3 className="text-sm font-heading">Tools</h3>
+            <h3 className="text-sm font-heading">{t("sections.tools.title")}</h3>
             <ul className="mt-4 space-y-3">
-              {footerLinks.tools.map((link) => (
+              {footerLinkKeys.tools.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm hover:underline">
-                    {link.label}
+                    {t(`sections.tools.${link.key}`)}
                   </Link>
                 </li>
               ))}
@@ -60,12 +63,12 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="text-sm font-heading">Company</h3>
+            <h3 className="text-sm font-heading">{t("sections.company.title")}</h3>
             <ul className="mt-4 space-y-3">
-              {footerLinks.company.map((link) => (
+              {footerLinkKeys.company.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm hover:underline">
-                    {link.label}
+                    {t(`sections.company.${link.key}`)}
                   </Link>
                 </li>
               ))}
@@ -74,12 +77,12 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h3 className="text-sm font-heading">Legal</h3>
+            <h3 className="text-sm font-heading">{t("sections.legal.title")}</h3>
             <ul className="mt-4 space-y-3">
-              {footerLinks.legal.map((link) => (
+              {footerLinkKeys.legal.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm hover:underline">
-                    {link.label}
+                    {t(`sections.legal.${link.key}`)}
                   </Link>
                 </li>
               ))}
@@ -90,7 +93,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t-[3px] border-border pt-8 sm:flex-row">
           <p className="text-sm">
-            &copy; {new Date().getFullYear()} SlimPDF. All rights reserved.
+            {t("copyright", { year: new Date().getFullYear() })}
           </p>
 
           {/* Theme Toggle */}
@@ -98,7 +101,7 @@ export function Footer() {
             variant="neutral"
             size="icon"
             onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-            aria-label="Toggle theme"
+            aria-label={t("toggleTheme")}
           >
             <Sun className="size-5 rotate-0 scale-100 transition-transform dark:-rotate-90 dark:scale-0" />
             <Moon className="absolute size-5 rotate-90 scale-0 transition-transform dark:rotate-0 dark:scale-100" />

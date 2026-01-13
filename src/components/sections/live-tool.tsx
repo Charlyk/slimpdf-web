@@ -11,6 +11,7 @@ import {
   Loader2,
   Upload,
 } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -22,16 +23,12 @@ type Tool = "compress" | "merge" | "image-to-pdf"
 type ProcessingState = "idle" | "selected" | "processing" | "complete"
 
 const tools = [
-  { id: "compress" as Tool, label: "Compress", icon: FileDown, accept: ".pdf" },
-  { id: "merge" as Tool, label: "Merge", icon: FilePlus, accept: ".pdf" },
-  { id: "image-to-pdf" as Tool, label: "Image to PDF", icon: ImageIcon, accept: ".jpg,.jpeg,.png,.webp" },
+  { id: "compress" as Tool, labelKey: "compress", icon: FileDown, accept: ".pdf" },
+  { id: "merge" as Tool, labelKey: "merge", icon: FilePlus, accept: ".pdf" },
+  { id: "image-to-pdf" as Tool, labelKey: "imageToPdf", icon: ImageIcon, accept: ".jpg,.jpeg,.png,.webp" },
 ]
 
-const qualityOptions = [
-  { id: "low", label: "Low" },
-  { id: "medium", label: "Medium" },
-  { id: "high", label: "High" },
-]
+const qualityKeys = ["low", "medium", "high"] as const
 
 function formatFileSize(bytes: number): string {
   if (bytes === 0) return "0 B"
@@ -49,6 +46,7 @@ export function LiveToolSection() {
   const [progress, setProgress] = useState(0)
   const [result, setResult] = useState<{ originalSize: number; compressedSize: number; reduction: number } | null>(null)
 
+  const t = useTranslations("home.liveTool")
   const currentTool = tools.find((t) => t.id === selectedTool)!
 
   const handleFilesSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,7 +106,7 @@ export function LiveToolSection() {
                 {tools.map((tool) => (
                   <TabsTrigger key={tool.id} value={tool.id} className="gap-2 text-lg">
                     <tool.icon className="size-5" />
-                    {tool.label}
+                    {t(`tabs.${tool.labelKey}`)}
                   </TabsTrigger>
                 ))}
               </TabsList>
@@ -126,8 +124,8 @@ export function LiveToolSection() {
                   >
                     <input type="file" accept={currentTool.accept} multiple={selectedTool !== "compress"} onChange={handleFilesSelected} className="hidden" />
                     <Upload className="size-10 text-foreground" />
-                    <p className="mt-4 font-heading">Drop files here or click to browse</p>
-                    <p className="mt-1 text-sm">Max 20MB free · 100MB with Pro</p>
+                    <p className="mt-4 font-heading">{t("dropzone.title")}</p>
+                    <p className="mt-1 text-sm">{t("dropzone.limits")}</p>
                   </label>
                 )}
 
@@ -149,28 +147,28 @@ export function LiveToolSection() {
 
                     {selectedTool === "compress" && (
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-heading">Quality:</span>
-                        {qualityOptions.map((opt) => (
+                        <span className="text-sm font-heading">{t("quality.label")}</span>
+                        {qualityKeys.map((key) => (
                           <button
-                            key={opt.id}
-                            onClick={() => setQuality(opt.id)}
+                            key={key}
+                            onClick={() => setQuality(key)}
                             className={cn(
                               "rounded-base border-2 border-border px-3 py-1.5 text-sm font-base transition-all",
-                              quality === opt.id
+                              quality === key
                                 ? "bg-main text-main-foreground shadow-shadow"
                                 : "bg-secondary-background hover:translate-x-boxShadowX hover:translate-y-boxShadowY"
                             )}
                           >
-                            {opt.label}
+                            {t(`quality.${key}`)}
                           </button>
                         ))}
                       </div>
                     )}
 
                     <Button onClick={handleProcess} className="w-full">
-                      {selectedTool === "compress" && "Compress PDF"}
-                      {selectedTool === "merge" && "Merge PDFs"}
-                      {selectedTool === "image-to-pdf" && "Convert to PDF"}
+                      {selectedTool === "compress" && t("actions.compressPdf")}
+                      {selectedTool === "merge" && t("actions.mergePdfs")}
+                      {selectedTool === "image-to-pdf" && t("actions.convertToPdf")}
                     </Button>
                   </div>
                 )}
@@ -179,7 +177,7 @@ export function LiveToolSection() {
                 {state === "processing" && (
                   <div className="py-8 text-center">
                     <Loader2 className="mx-auto size-10 animate-spin text-main" />
-                    <p className="mt-4 font-heading">Processing...</p>
+                    <p className="mt-4 font-heading">{t("processing.title")}</p>
                     <div className="mt-4 mx-auto max-w-xs">
                       <Progress value={progress} className="h-2" />
                     </div>
@@ -190,19 +188,19 @@ export function LiveToolSection() {
                 {state === "complete" && result && (
                   <div className="text-center">
                     <CheckCircle2 className="mx-auto size-10 text-chart-1" />
-                    <p className="mt-4 font-heading">Compression complete!</p>
+                    <p className="mt-4 font-heading">{t("complete.title")}</p>
                     <div className="mt-4 rounded-base border-2 border-border bg-background p-4">
                       <p className="text-2xl font-heading">
                         {formatFileSize(result.originalSize)} → <span className="text-chart-1">{formatFileSize(result.compressedSize)}</span>
                       </p>
-                      <p className="mt-1 text-sm text-chart-1 font-heading">{result.reduction}% smaller</p>
+                      <p className="mt-1 text-sm text-chart-1 font-heading">{t("complete.reduction", { percent: result.reduction })}</p>
                     </div>
                     <Button className="mt-4 w-full">
                       <Download className="size-4" />
-                      Download PDF
+                      {t("complete.download")}
                     </Button>
                     <button onClick={handleReset} className="mt-3 text-sm font-heading text-main hover:underline">
-                      Compress another file
+                      {t("complete.compressAnother")}
                     </button>
                   </div>
                 )}

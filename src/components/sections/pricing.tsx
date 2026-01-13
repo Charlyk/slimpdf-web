@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Check } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
@@ -11,39 +12,32 @@ import { cn } from "@/lib/utils"
 
 const plans = [
   {
-    name: "Free",
+    key: "free",
     price: { monthly: 0, yearly: 0 },
-    description: "For occasional use",
-    features: [
-      "2 files per day",
-      "20MB max file size",
-      "Standard compression",
-      "1-hour download links",
-    ],
-    cta: "Get started",
+    featureKeys: ["filesPerDay", "maxFileSize", "compression", "downloadLinks"],
     popular: false,
+    enterprise: false,
   },
   {
-    name: "Pro",
+    key: "pro",
     price: { monthly: 9, yearly: 49 },
-    description: "For power users",
-    features: [
-      "Unlimited files",
-      "100MB max file size",
-      "Target exact file size",
-      "Batch processing (20 files)",
-      "API access included",
-      "24-hour download links",
-      "Priority processing",
-    ],
-    cta: "Start free trial",
+    featureKeys: ["unlimitedFiles", "maxFileSize", "targetSize", "batchProcessing", "apiAccess", "downloadLinks", "priorityProcessing"],
     popular: true,
+    enterprise: false,
+  },
+  {
+    key: "business",
+    price: { monthly: 0, yearly: 0 },
+    featureKeys: ["everythingInPro", "unlimitedFileSize", "dedicatedSupport", "customIntegrations", "sla", "onPremise"],
+    popular: false,
+    enterprise: true,
   },
 ]
 
 export function PricingSection() {
   const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("yearly")
   const isYearly = billingPeriod === "yearly"
+  const t = useTranslations("home.pricing")
 
   return (
     <section className="border-y-[3px] border-border bg-secondary-background py-20 sm:py-32">
@@ -51,19 +45,19 @@ export function PricingSection() {
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-heading tracking-tight sm:text-4xl">
-            Simple, transparent pricing
+            {t("title")}
           </h2>
           <p className="mt-4 text-lg">
-            Start free, upgrade when you need more
+            {t("subtitle")}
           </p>
 
           {/* Billing Toggle */}
           <Tabs value={billingPeriod} onValueChange={(v) => setBillingPeriod(v as "monthly" | "yearly")} className="mt-8">
             <div className="flex justify-center">
               <TabsList>
-                <TabsTrigger value="monthly" className="text-lg">Monthly</TabsTrigger>
+                <TabsTrigger value="monthly" className="text-lg">{t("billingToggle.monthly")}</TabsTrigger>
                 <TabsTrigger value="yearly" className="text-lg">
-                  Yearly <span className="ml-1 font-bold">-54%</span>
+                  {t("billingToggle.yearly")} <span className="ml-1 font-bold">{t("billingToggle.yearlyDiscount")}</span>
                 </TabsTrigger>
               </TabsList>
             </div>
@@ -71,57 +65,63 @@ export function PricingSection() {
         </div>
 
         {/* Pricing Cards */}
-        <div className="mx-auto mt-12 grid max-w-4xl gap-8 md:grid-cols-2">
+        <div className="mx-auto mt-12 grid max-w-6xl gap-8 md:grid-cols-3 items-stretch">
           {plans.map((plan) => (
             <Card
-              key={plan.name}
+              key={plan.key}
               className={cn(
-                "relative",
+                "relative flex flex-col",
                 plan.popular && "border-main"
               )}
             >
               {plan.popular && (
                 <Badge className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
-                  Most popular
+                  {t("mostPopular")}
                 </Badge>
               )}
               <CardHeader>
-                <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                <CardDescription className="text-xl">{plan.description}</CardDescription>
+                <CardTitle className="text-2xl">{t(`plans.${plan.key}.name`)}</CardTitle>
+                <CardDescription className="text-xl">{t(`plans.${plan.key}.description`)}</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-1">
                 <div className="mb-6">
-                  <span className="text-4xl font-heading">
-                    ${plan.price.monthly === 0 ? 0 : isYearly ? plan.price.yearly : plan.price.monthly}
-                  </span>
-                  {plan.price.monthly > 0 && (
-                    <span className="text-sm">/{isYearly ? "year" : "month"}</span>
+                  {plan.enterprise ? (
+                    <span className="text-4xl font-heading">{t("custom")}</span>
+                  ) : (
+                    <>
+                      <span className="text-4xl font-heading">
+                        ${plan.price.monthly === 0 ? 0 : isYearly ? plan.price.yearly : plan.price.monthly}
+                      </span>
+                      {plan.price.monthly > 0 && (
+                        <span className="text-sm">{isYearly ? t("period.year") : t("period.month")}</span>
+                      )}
+                    </>
                   )}
                 </div>
-                {plan.price.monthly > 0 && isYearly && (
-                  <p className="mb-6 text-base">$4.08/month billed annually</p>
+                {plan.price.monthly > 0 && isYearly && !plan.enterprise && (
+                  <p className="mb-6 text-base">{t("billedAnnually")}</p>
                 )}
                 <ul className="space-y-3">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3 text-base">
+                  {plan.featureKeys.map((featureKey) => (
+                    <li key={featureKey} className="flex items-start gap-3 text-base">
                       <Check className="mt-0.5 size-4 shrink-0 text-chart-1" />
-                      <span>{feature}</span>
+                      <span>{t(`plans.${plan.key}.features.${featureKey}`)}</span>
                     </li>
                   ))}
                 </ul>
               </CardContent>
               <CardFooter className="flex-col gap-3">
+                {plan.popular && (
+                  <p className="text-center text-base">
+                    {t("trialInfo")}
+                  </p>
+                )}
                 <Button
                   variant={plan.popular ? "default" : "neutral"}
                   className="w-full text-xl py-6"
                 >
-                  {plan.cta}
+                  {t(`plans.${plan.key}.cta`)}
                 </Button>
-                {plan.popular && (
-                  <p className="text-center text-base">
-                    7-day free trial · Cancel anytime
-                  </p>
-                )}
               </CardFooter>
             </Card>
           ))}

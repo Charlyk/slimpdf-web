@@ -3,20 +3,23 @@
 import Link from "next/link"
 import { FileText, Menu, X } from "lucide-react"
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-const navLinks = [
-  { href: "/compress", label: "Compress" },
-  { href: "/merge", label: "Merge" },
-  { href: "/image-to-pdf", label: "Image to PDF" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/docs/api", label: "API" },
+const navLinkKeys = [
+  { href: "/compress", key: "compress" },
+  { href: "/merge", key: "merge" },
+  { href: "/image-to-pdf", key: "imageToPdf" },
+  { href: "/pricing", key: "pricing" },
+  { href: "/docs/api", key: "api" },
 ]
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const t = useTranslations("navbar.links")
+  const tCommon = useTranslations("common")
 
   return (
     <header className="sticky top-0 z-50 w-full border-b-[3px] border-border bg-secondary-background">
@@ -26,18 +29,18 @@ export function Navbar() {
           <div className="flex size-8 items-center justify-center rounded-base border-2 border-border bg-main">
             <FileText className="size-5 text-main-foreground" />
           </div>
-          <span className="text-xl font-heading">SlimPDF</span>
+          <span className="text-xl font-heading">{tCommon("brandName")}</span>
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-1 md:flex">
-          {navLinks.map((link) => (
+          {navLinkKeys.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className="px-3 py-2 text-base font-base"
             >
-              {link.label}
+              {t(link.key)}
             </Link>
           ))}
         </nav>
@@ -45,10 +48,10 @@ export function Navbar() {
         {/* Desktop CTA */}
         <div className="hidden items-center gap-3 md:flex">
           <Button variant="neutral" size="sm" asChild>
-            <Link href="/login">Log in</Link>
+            <Link href="/login">{tCommon("logIn")}</Link>
           </Button>
           <Button size="sm" asChild>
-            <Link href="/compress">Get started</Link>
+            <Link href="/compress">{tCommon("getStarted")}</Link>
           </Button>
         </div>
 
@@ -65,22 +68,22 @@ export function Navbar() {
       {/* Mobile Menu */}
       <div className={cn("border-t-[3px] border-border bg-secondary-background md:hidden", mobileMenuOpen ? "block" : "hidden")}>
         <nav className="flex flex-col gap-1 p-4">
-          {navLinks.map((link) => (
+          {navLinkKeys.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className="px-4 py-3 text-base font-base"
               onClick={() => setMobileMenuOpen(false)}
             >
-              {link.label}
+              {t(link.key)}
             </Link>
           ))}
           <div className="mt-4 flex flex-col gap-2 border-t-[3px] border-border pt-4">
             <Button variant="neutral" asChild>
-              <Link href="/login">Log in</Link>
+              <Link href="/login">{tCommon("logIn")}</Link>
             </Button>
             <Button asChild>
-              <Link href="/compress">Get started</Link>
+              <Link href="/compress">{tCommon("getStarted")}</Link>
             </Button>
           </div>
         </nav>

@@ -1,73 +1,57 @@
-import { Upload, Settings, Download } from "lucide-react"
+"use client"
+
+import { Upload, SlidersHorizontal, Download } from "lucide-react"
+import { useTranslations } from "next-intl"
+
+import { Card, CardContent } from "@/components/ui/card"
 
 const steps = [
-  {
-    step: 1,
-    icon: Upload,
-    title: "Upload your file",
-    description:
-      "Drag and drop your PDF or images, or click to browse. We support files up to 100MB.",
-  },
-  {
-    step: 2,
-    icon: Settings,
-    title: "Choose your settings",
-    description:
-      "Select compression quality, arrange pages, or customize output options.",
-  },
-  {
-    step: 3,
-    icon: Download,
-    title: "Download the result",
-    description:
-      "Get your processed file instantly. Files are auto-deleted for your privacy.",
-  },
+  { key: "upload", icon: Upload },
+  { key: "choose", icon: SlidersHorizontal },
+  { key: "download", icon: Download },
 ]
 
 export function HowItWorksSection() {
+  const t = useTranslations("home.howItWorks")
+
   return (
-    <section className="bg-grey-10 py-20 sm:py-32">
+    <section className="border-t-[3px] border-border py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-grey-70 sm:text-4xl">
-            How it works
+          <h2 className="text-3xl font-heading tracking-tight sm:text-4xl">
+            {t("title")}
           </h2>
-          <p className="mt-4 text-lg text-grey-50">
-            Three simple steps to process your files
+          <p className="mt-4 text-lg">
+            {t("subtitle")}
           </p>
         </div>
 
         {/* Steps */}
-        <div className="mx-auto mt-16 max-w-5xl">
-          <div className="grid gap-8 md:grid-cols-3">
-            {steps.map((step, index) => (
-              <div key={step.step} className="relative">
-                {/* Connector line */}
-                {index < steps.length - 1 && (
-                  <div className="absolute left-1/2 top-12 hidden h-0.5 w-full -translate-y-1/2 bg-grey-20 md:block" />
-                )}
-
-                <div className="relative flex flex-col items-center text-center">
-                  {/* Step number */}
-                  <div className="relative">
-                    <div className="flex size-24 items-center justify-center rounded-2xl bg-white shadow-md">
-                      <step.icon className="size-10 text-brand-60" />
-                    </div>
-                    <div className="absolute -right-2 -top-2 flex size-8 items-center justify-center rounded-full bg-brand-60 text-sm font-bold text-white">
-                      {step.step}
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <h3 className="mt-6 text-xl font-bold text-grey-70">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-grey-50">{step.description}</p>
+        <div className="mx-auto mt-12 grid max-w-5xl gap-8 md:grid-cols-3">
+          {steps.map((step, index) => (
+            <Card key={step.key} className="relative">
+              <CardContent className="pt-8 pb-6 px-6 text-center">
+                {/* Step number */}
+                <div className="absolute -top-5 left-1/2 -translate-x-1/2 flex size-10 items-center justify-center rounded-full border-2 border-border bg-main text-main-foreground font-heading text-xl">
+                  {index + 1}
                 </div>
-              </div>
-            ))}
-          </div>
+
+                {/* Icon */}
+                <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-base border-2 border-border bg-secondary-background">
+                  <step.icon className="size-7" />
+                </div>
+
+                {/* Content */}
+                <h3 className="text-xl font-heading mb-2">
+                  {t(`steps.${step.key}.title`)}
+                </h3>
+                <p className="text-base">
+                  {t(`steps.${step.key}.description`)}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </section>
