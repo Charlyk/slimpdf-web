@@ -7,11 +7,15 @@ type JobStatus = 'pending' | 'processing' | 'completed' | 'failed';
 type ToolType = 'compress' | 'merge' | 'image_to_pdf';
 type Plan = 'free' | 'pro';
 type BillingInterval = 'month' | 'year';
+/** Supported languages for API responses */
+type SupportedLanguage = 'en' | 'es' | 'fr' | 'de' | 'pt' | 'it' | 'ja' | 'zh' | 'ko';
 interface ClientOptions {
     /** Base URL of the SlimPDF API (e.g., 'https://api.slimpdf.io') */
     baseUrl: string;
     /** Optional access token (JWT or API key) for authenticated requests */
     accessToken?: string;
+    /** Optional language for API responses (default: 'en') */
+    language?: SupportedLanguage;
     /** Optional custom fetch function for testing or custom implementations */
     fetch?: typeof fetch;
 }
@@ -156,6 +160,7 @@ interface ErrorResponse {
 interface RequestContext {
     baseUrl: string;
     getAccessToken: () => string | undefined;
+    getLanguage: () => string;
     fetch: typeof fetch;
 }
 
@@ -380,6 +385,7 @@ declare class ApiKeysClient {
  * const client = new SlimPdfClient({
  *   baseUrl: 'https://api.slimpdf.io',
  *   accessToken: 'your-jwt-or-api-key', // optional
+ *   language: 'es', // optional, defaults to 'en'
  * });
  *
  * // Compress a PDF
@@ -395,6 +401,7 @@ declare class ApiKeysClient {
  */
 declare class SlimPdfClient {
     private _accessToken;
+    private _language;
     private readonly ctx;
     /** Compress PDF files */
     readonly compress: CompressClient;
@@ -424,6 +431,15 @@ declare class SlimPdfClient {
      * Check if the client has an access token set
      */
     get isAuthenticated(): boolean;
+    /**
+     * Set the language for API responses
+     * Supported: 'en', 'es', 'fr', 'de', 'pt', 'it', 'ja', 'zh', 'ko'
+     */
+    setLanguage(language: SupportedLanguage): void;
+    /**
+     * Get the current language
+     */
+    get language(): SupportedLanguage;
 }
 
 /**
@@ -501,4 +517,4 @@ declare class JobFailedError extends SlimPdfError {
     constructor(jobId: string, errorMessage: string);
 }
 
-export { type ApiKey, type ApiKeyCreateResponse, ApiKeysClient, AuthClient, type AuthTokenResponse, AuthenticationError, BillingClient, type BillingInterval, type CheckoutResponse, type ClientOptions, CompressClient, type CompressOptions, type CompressResponse, type CompressionQuality, type ErrorResponse, FileSizeError, ForbiddenError, ImageToPdfClient, type ImageToPdfOptions, type ImageToPdfResponse, JobExpiredError, JobFailedError, type JobResult, type JobStatus, type JobStatusResponse, JobsClient, type MeResponse, MergeClient, type MergeResponse, NotFoundError, type PageSize, type Plan, type PollOptions, PollingTimeoutError, type PortalResponse, ProcessingError, RateLimitError, type RateLimitInfo, SlimPdfClient, SlimPdfError, type ToolType, type UsageResponse, type UsageStats, type User, ValidationError, type VerifyResponse };
+export { type ApiKey, type ApiKeyCreateResponse, ApiKeysClient, AuthClient, type AuthTokenResponse, AuthenticationError, BillingClient, type BillingInterval, type CheckoutResponse, type ClientOptions, CompressClient, type CompressOptions, type CompressResponse, type CompressionQuality, type ErrorResponse, FileSizeError, ForbiddenError, ImageToPdfClient, type ImageToPdfOptions, type ImageToPdfResponse, JobExpiredError, JobFailedError, type JobResult, type JobStatus, type JobStatusResponse, JobsClient, type MeResponse, MergeClient, type MergeResponse, NotFoundError, type PageSize, type Plan, type PollOptions, PollingTimeoutError, type PortalResponse, ProcessingError, RateLimitError, type RateLimitInfo, SlimPdfClient, SlimPdfError, type SupportedLanguage, type ToolType, type UsageResponse, type UsageStats, type User, ValidationError, type VerifyResponse };

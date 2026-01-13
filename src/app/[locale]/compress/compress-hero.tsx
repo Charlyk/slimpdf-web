@@ -1,21 +1,18 @@
-"use client"
+import { Sparkles, ArrowDown } from "lucide-react"
+import { getTranslations } from "next-intl/server"
 
-import { Link } from "@/i18n/routing"
-import { ArrowRight, Sparkles } from "lucide-react"
-import { useTranslations } from "next-intl"
-
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 
-export function HeroSection() {
-  const t = useTranslations("home.hero")
+export async function CompressHero() {
+  const t = await getTranslations("compress.hero")
 
   return (
-    <section className="bg-grid py-20 sm:py-32">
+    <section className="bg-grid py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
+        <div className="mx-auto max-w-3xl text-center">
           {/* Badge */}
-          <Badge variant="neutral" className="mb-8">
+          <Badge variant="neutral" className="mb-6">
             <Sparkles className="size-3" />
             {t("badge")}
           </Badge>
@@ -27,17 +24,17 @@ export function HeroSection() {
           </h1>
 
           {/* Subheadline */}
-          <p className="mt-6 text-lg sm:text-xl max-w-3xl mx-auto">
+          <p className="mt-6 text-lg sm:text-xl max-w-2xl mx-auto">
             {t("subtitle")}
           </p>
 
           {/* CTAs */}
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button className="text-xl px-8 py-6" asChild>
-              <Link href="/compress">
+              <a href="#compress-tool">
                 {t("ctaPrimary")}
-                <ArrowRight className="size-5" />
-              </Link>
+                <ArrowDown className="size-5" />
+              </a>
             </Button>
             <Button variant="neutral" className="text-xl px-8 py-6" asChild>
               <a href="#pricing">
@@ -47,8 +44,8 @@ export function HeroSection() {
           </div>
 
           {/* Trust indicator */}
-          <p className="mt-10 text-sm">
-            {t("trustIndicator", { count: "2,500+" })}
+          <p className="mt-10 text-sm text-muted-foreground">
+            {t("trustIndicator", { count: "50,000+" })}
           </p>
         </div>
       </div>

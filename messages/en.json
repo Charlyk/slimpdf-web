@@ -415,5 +415,363 @@
       }
     },
     "copyright": "© {year} SlimPDF. All rights reserved."
+  },
+  "compress": {
+    "metadata": {
+      "title": "Compress PDF Online Free - Reduce Size 90% | SlimPDF",
+      "description": "Compress PDF files online free. Reduce PDF size up to 90% with Ghostscript. Target exact sizes for email. No signup, no watermarks, files auto-deleted."
+    },
+    "hero": {
+      "badge": "Server-powered Ghostscript compression",
+      "title": "Compress PDF Online",
+      "titleHighlight": "Up to 90% Smaller",
+      "subtitle": "Reduce PDF file size with professional-grade compression. Target exact sizes for email attachments. No quality loss, no watermarks, no signup required.",
+      "ctaPrimary": "Compress PDF Now",
+      "ctaSecondary": "View Pricing",
+      "trustIndicator": "Over {count} PDFs compressed"
+    },
+    "tool": {
+      "dropzone": {
+        "title": "Drop PDF here or click to browse",
+        "subtitle": "Max 20MB free · 100MB with Pro",
+        "dragActive": "Drop your PDF here"
+      },
+      "qualityLabel": "Compression level",
+      "quality": {
+        "low": "Maximum compression",
+        "lowDesc": "Smallest file, ideal for email and web",
+        "medium": "Balanced",
+        "mediumDesc": "Good compression with quality preservation",
+        "high": "Minimum compression",
+        "highDesc": "Best quality, modest size reduction"
+      },
+      "targetSize": {
+        "label": "Target file size",
+        "placeholder": "e.g. 5",
+        "unit": "MB",
+        "hint": "Pro: compress to exact size",
+        "enabled": "Compress to exactly {size}MB",
+        "presets": {
+          "label": "Quick presets",
+          "email10": "Under 10MB (email)",
+          "email5": "Under 5MB (strict email)",
+          "web1": "Under 1MB (web upload)"
+        }
+      },
+      "actions": {
+        "compress": "Compress PDF",
+        "compressing": "Compressing..."
+      },
+      "processing": {
+        "uploading": "Uploading...",
+        "compressing": "Compressing with Ghostscript...",
+        "optimizing": "Optimizing images...",
+        "almostDone": "Finalizing..."
+      },
+      "result": {
+        "title": "Compression Complete!",
+        "originalSize": "Original",
+        "compressedSize": "Compressed",
+        "reduction": "{percent}% smaller",
+        "savedSpace": "You saved {size}",
+        "download": "Download Compressed PDF",
+        "another": "Compress Another PDF",
+        "shareResult": "Share result"
+      },
+      "error": {
+        "title": "Compression Failed",
+        "fileTooLarge": "File exceeds {max}MB limit. Upgrade to Pro for 100MB.",
+        "invalidType": "Please upload a PDF file",
+        "encrypted": "This PDF is password-protected. Remove the password first.",
+        "corrupted": "This PDF appears to be corrupted or invalid.",
+        "generic": "Something went wrong. Please try again.",
+        "tryAgain": "Try Again"
+      },
+      "rateLimit": {
+        "remaining": "{remaining} of {limit} free compressions today",
+        "exceeded": "Daily limit reached",
+        "resetTime": "Resets in {hours} hours",
+        "upgradePrompt": "Upgrade to Pro for unlimited"
+      }
+    },
+    "useCases": {
+      "title": "Compress PDF For Any Purpose",
+      "items": {
+        "email": {
+          "title": "Compress PDF for Email",
+          "description": "Most email providers limit attachments to 10-25MB. Compress large PDFs to send via Gmail, Outlook, or any email client without bouncing.",
+          "keywords": [
+            "compress pdf for email",
+            "pdf too large for email",
+            "reduce pdf size for email"
+          ]
+        },
+        "web": {
+          "title": "Compress PDF for Web Upload",
+          "description": "Many websites limit upload sizes to 5MB or less. Compress your PDF to meet upload requirements for job applications, forms, and submissions.",
+          "keywords": [
+            "compress pdf for upload",
+            "reduce pdf size online"
+          ]
+        },
+        "storage": {
+          "title": "Compress PDF to Save Storage",
+          "description": "Free up space on your device or cloud storage. Compress entire folders of PDFs to reduce storage costs and speed up syncing.",
+          "keywords": [
+            "compress pdf to save space",
+            "reduce pdf file size"
+          ]
+        },
+        "sharing": {
+          "title": "Compress PDF for Sharing",
+          "description": "Share PDFs faster via messaging apps, Slack, Discord, or file sharing services. Smaller files upload and download quicker.",
+          "keywords": [
+            "compress pdf for sharing",
+            "make pdf smaller"
+          ]
+        }
+      }
+    },
+    "targetSizes": {
+      "title": "Compress PDF to Specific Sizes",
+      "subtitle": "Pro feature: set exactly the size you need",
+      "items": {
+        "10mb": {
+          "title": "Compress PDF to 10MB",
+          "description": "Standard email attachment limit for most providers. Works for Gmail, Yahoo, and corporate email."
+        },
+        "5mb": {
+          "title": "Compress PDF to 5MB",
+          "description": "Strict email limits and web forms. Common requirement for government and job applications."
+        },
+        "3mb": {
+          "title": "Compress PDF to 3MB",
+          "description": "Some web portals require files under 3MB. We iterate compression to hit this target."
+        },
+        "1mb": {
+          "title": "Compress PDF to 1MB",
+          "description": "Maximum compression for the smallest possible file. Good for web uploads and mobile sharing."
+        },
+        "500kb": {
+          "title": "Compress PDF Under 500KB",
+          "description": "Extreme compression for very strict limits. Best for text-heavy documents."
+        },
+        "200kb": {
+          "title": "Compress PDF Under 200KB",
+          "description": "Ultra-compact for embedded forms and signatures. Ideal for digital documents and workflows."
+        }
+      },
+      "cta": "Get Pro for Target Size"
+    },
+    "platforms": {
+      "title": "Works On All Devices",
+      "subtitle": "No software to install",
+      "items": {
+        "mac": {
+          "title": "Compress PDF on Mac",
+          "description": "Works in Safari, Chrome, and Firefox on macOS. No Preview workarounds needed."
+        },
+        "windows": {
+          "title": "Compress PDF on Windows",
+          "description": "Works in any browser on Windows 10 and 11. No Adobe Acrobat required."
+        },
+        "linux": {
+          "title": "Compress PDF on Linux",
+          "description": "Full support for Chrome and Firefox on Ubuntu, Fedora, and other distros."
+        },
+        "mobile": {
+          "title": "Compress PDF on iPhone & Android",
+          "description": "Works on mobile browsers. Compress PDFs directly from your phone without apps."
+        }
+      }
+    },
+    "features": {
+      "title": "Why SlimPDF Compression?",
+      "items": {
+        "ghostscript": {
+          "title": "Ghostscript Engine",
+          "description": "Same technology used by professional print shops. Not a JavaScript workaround that crashes on large files."
+        },
+        "quality": {
+          "title": "Quality Preserved",
+          "description": "Smart compression removes bloat while keeping text sharp and images clear. Readable results every time."
+        },
+        "targetSize": {
+          "title": "Target Exact Size",
+          "description": "Need exactly 5MB for an email? Set a target and we iterate until we hit it. Pro feature."
+        },
+        "fast": {
+          "title": "Fast Processing",
+          "description": "Server-side processing compresses even 100MB files in seconds. No browser freezing."
+        },
+        "secure": {
+          "title": "Private & Secure",
+          "description": "256-bit encryption in transit. Files auto-deleted after processing. We never access your content."
+        },
+        "free": {
+          "title": "Free to Start",
+          "description": "2 compressions per day free. No signup, no watermarks, no credit card required."
+        }
+      }
+    },
+    "howItWorks": {
+      "title": "How to Compress PDF Online",
+      "steps": {
+        "upload": {
+          "number": "1",
+          "title": "Upload Your PDF",
+          "description": "Drag and drop or click to select. Up to 20MB free, 100MB with Pro."
+        },
+        "settings": {
+          "number": "2",
+          "title": "Choose Compression Level",
+          "description": "Select Maximum, Balanced, or Minimum compression. Or set a target file size."
+        },
+        "download": {
+          "number": "3",
+          "title": "Download Compressed PDF",
+          "description": "Get your smaller PDF instantly. No registration, no watermarks."
+        }
+      }
+    },
+    "comparison": {
+      "title": "SlimPDF vs Other PDF Compressors",
+      "headers": {
+        "feature": "Feature",
+        "browser": "Browser Tools",
+        "adobe": "Adobe Acrobat",
+        "slimpdf": "SlimPDF"
+      },
+      "rows": {
+        "compression": {
+          "feature": "Compression ratio",
+          "browser": "20-40%",
+          "adobe": "Up to 70%",
+          "slimpdf": "Up to 90%"
+        },
+        "largeFiles": {
+          "feature": "Large files (50MB+)",
+          "browser": "Crashes",
+          "adobe": "Slow",
+          "slimpdf": "Seconds"
+        },
+        "targetSize": {
+          "feature": "Target exact size",
+          "browser": "No",
+          "adobe": "No",
+          "slimpdf": "Yes"
+        },
+        "cost": {
+          "feature": "Price",
+          "browser": "Free (limited)",
+          "adobe": "$13/month",
+          "slimpdf": "Free or $9/mo"
+        },
+        "signup": {
+          "feature": "Signup required",
+          "browser": "Sometimes",
+          "adobe": "Yes",
+          "slimpdf": "No"
+        },
+        "watermark": {
+          "feature": "Watermarks",
+          "browser": "Often",
+          "adobe": "No",
+          "slimpdf": "Never"
+        }
+      }
+    },
+    "seoContent": {
+      "title": "The Best Way to Compress PDF Files Online",
+      "content": [
+        {
+          "heading": "Why PDF Files Get So Large",
+          "text": "PDF files grow large for several reasons: embedded high-resolution images, multiple fonts, form data, annotations, and metadata. A simple report can balloon to 50MB if it contains unoptimized images or scanned pages. SlimPDF's Ghostscript engine analyzes your PDF and compresses each element intelligently, reducing file size without destroying quality."
+        },
+        {
+          "heading": "Browser Compression vs Server Compression",
+          "text": "Most free PDF compressors run JavaScript in your browser. They're limited by browser memory and can only apply basic compression, typically achieving 20-40% reduction. SlimPDF runs Ghostscript on dedicated servers, the same engine used by professional publishers. This allows compression ratios up to 90% and handles files that would crash browser-based tools."
+        },
+        {
+          "heading": "When to Use Each Compression Level",
+          "text": "Maximum compression is best for text-heavy documents, forms, and files you need to email. Balanced compression works well for documents with some images where you want good quality and smaller size. Minimum compression is ideal when quality is critical, like portfolios, presentations with photos, or documents for printing."
+        },
+        {
+          "heading": "Compressing Scanned PDFs",
+          "text": "Scanned documents are essentially large images wrapped in PDF format. These often compress dramatically, sometimes by 80-90%. If your scanned PDF is too large, SlimPDF can reduce it significantly while keeping text readable. For best results on scanned docs, use Maximum compression."
+        }
+      ]
+    },
+    "faq": {
+      "title": "PDF Compression FAQ",
+      "items": {
+        "quality": {
+          "question": "Will compression reduce my PDF quality?",
+          "answer": "SlimPDF uses intelligent compression that removes unnecessary data while preserving visual quality. Text stays crisp, images stay clear. For documents where quality is critical, use Minimum compression to prioritize appearance over file size."
+        },
+        "howMuch": {
+          "question": "How much smaller will my PDF get?",
+          "answer": "Results depend on your PDF content. Documents with many images typically compress 60-90%. Text-heavy PDFs may compress 20-50%. Scanned documents often see the best results. You'll see the exact reduction after compression."
+        },
+        "email": {
+          "question": "How do I compress a PDF for email?",
+          "answer": "Upload your PDF, select Maximum compression, and download the result. If you need a specific size (like under 10MB for Gmail), upgrade to Pro and use the Target Size feature to compress to exactly the size you need."
+        },
+        "secure": {
+          "question": "Is my PDF secure?",
+          "answer": "Yes. All uploads use 256-bit SSL encryption. Files are processed in isolated containers and automatically deleted after 1 hour (free) or 24 hours (Pro). We never access, read, or store your content."
+        },
+        "batch": {
+          "question": "Can I compress multiple PDFs at once?",
+          "answer": "Pro users can batch compress up to 20 PDFs simultaneously. Upload multiple files, compress them all with one click, and download results as a ZIP file."
+        },
+        "api": {
+          "question": "Can I compress PDFs via API?",
+          "answer": "Yes. Pro subscribers get full REST API access. Send a PDF via HTTP POST, receive a compressed version. See our API docs for code examples in Python, JavaScript, curl, and more."
+        },
+        "encrypted": {
+          "question": "Can I compress a password-protected PDF?",
+          "answer": "You'll need to remove the password first. If you know the password, use our PDF Unlock tool to remove protection, then compress the unlocked file."
+        },
+        "size": {
+          "question": "What's the maximum file size?",
+          "answer": "Free tier accepts files up to 20MB. Pro tier handles files up to 100MB. For files larger than 100MB, contact us about our Business tier."
+        },
+        "mobile": {
+          "question": "Can I compress PDFs on my phone?",
+          "answer": "Yes. SlimPDF works in mobile browsers on iPhone and Android. No app required. Just open slimpdf.io, upload your PDF, and download the compressed version."
+        },
+        "offline": {
+          "question": "Does this work offline?",
+          "answer": "No. SlimPDF requires an internet connection because compression runs on our servers. This is what allows us to achieve 90% compression ratios that browser-based tools can't match."
+        }
+      }
+    },
+    "relatedTools": {
+      "title": "More PDF Tools",
+      "items": {
+        "merge": {
+          "title": "Merge PDF",
+          "description": "Combine multiple PDFs into one document",
+          "url": "/merge"
+        },
+        "imageToPdf": {
+          "title": "Image to PDF",
+          "description": "Convert JPG, PNG images to PDF",
+          "url": "/image-to-pdf"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Compress Your PDF?",
+      "subtitle": "Drop your file above or scroll up to get started",
+      "benefits": [
+        "No signup required",
+        "No watermarks ever",
+        "Files auto-deleted"
+      ],
+      "ctaPrimary": "Compress PDF Free",
+      "ctaSecondary": "Get Pro for Target Sizes"
+    }
   }
 }

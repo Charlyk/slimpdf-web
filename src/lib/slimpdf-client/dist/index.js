@@ -145,6 +145,7 @@ async function request(ctx, method, path, options = {}) {
     }
   }
   const headers = { ...customHeaders };
+  headers["X-Language"] = ctx.getLanguage();
   const token = ctx.getAccessToken();
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
@@ -171,7 +172,9 @@ async function request(ctx, method, path, options = {}) {
 }
 async function requestBlob(ctx, method, path) {
   const url = `${ctx.baseUrl}${path}`;
-  const headers = {};
+  const headers = {
+    "X-Language": ctx.getLanguage()
+  };
   const token = ctx.getAccessToken();
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
@@ -522,10 +525,12 @@ var ApiKeysClient = class {
 var SlimPdfClient = class {
   constructor(options) {
     this._accessToken = options.accessToken;
+    this._language = options.language || "en";
     this.ctx = {
       baseUrl: options.baseUrl.replace(/\/$/, ""),
       // Remove trailing slash
       getAccessToken: () => this._accessToken,
+      getLanguage: () => this._language,
       fetch: options.fetch || globalThis.fetch.bind(globalThis)
     };
     this.compress = new CompressClient(this.ctx);
@@ -554,6 +559,19 @@ var SlimPdfClient = class {
    */
   get isAuthenticated() {
     return !!this._accessToken;
+  }
+  /**
+   * Set the language for API responses
+   * Supported: 'en', 'es', 'fr', 'de', 'pt', 'it', 'ja', 'zh', 'ko'
+   */
+  setLanguage(language) {
+    this._language = language;
+  }
+  /**
+   * Get the current language
+   */
+  get language() {
+    return this._language;
   }
 };
 

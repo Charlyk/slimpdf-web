@@ -12,8 +12,9 @@ import { TrustSignalsSection } from "@/components/sections/trust-signals"
 import { PricingSection } from "@/components/sections/pricing"
 import { FAQSection } from "@/components/sections/faq"
 import { FinalCTASection } from "@/components/sections/final-cta"
+import {Metadata} from "next";
 
-export async function generateMetadata() {
+export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("metadata")
 
   return {

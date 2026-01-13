@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import { Link } from "@/i18n/routing"
 import { FileText, Sun, Moon } from "lucide-react"
 import { useTranslations } from "next-intl"
 

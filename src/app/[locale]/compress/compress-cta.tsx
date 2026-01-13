@@ -1,14 +1,12 @@
-"use client"
-
-import { Link } from "@/i18n/routing"
 import { Check } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 
-import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Link } from "@/i18n/routing"
 
-export function FinalCTASection() {
-  const t = useTranslations("home.finalCta")
+export async function CompressCTA() {
+  const t = await getTranslations("compress.cta")
   const benefits = t.raw("benefits") as string[]
 
   return (
@@ -19,17 +17,17 @@ export function FinalCTASection() {
             <h2 className="text-2xl font-heading tracking-tight sm:text-3xl">
               {t("title")}
             </h2>
-            <p className="mt-3 text-lg">
+            <p className="mt-3 text-lg text-muted-foreground">
               {t("subtitle")}
             </p>
 
             {/* CTA Buttons */}
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button className="text-xl px-8 py-6" asChild>
-                <Link href="/compress">{t("ctaPrimary")}</Link>
+                <a href="#compress-tool">{t("ctaPrimary")}</a>
               </Button>
               <Button variant="neutral" className="text-xl px-8 py-6" asChild>
-                <a href="#pricing">{t("ctaSecondary")}</a>
+                <Link href="#pricing">{t("ctaSecondary")}</Link>
               </Button>
             </div>
 
