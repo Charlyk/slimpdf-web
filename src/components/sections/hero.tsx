@@ -24,7 +24,6 @@ export function HeroSection() {
           <h1 className="text-4xl font-heading tracking-tight sm:text-5xl lg:text-6xl">
             {t("title")}{" "}
             <span className="text-main">{t("titleHighlight")}</span>
-            {t("titleSuffix")}
           </h1>
 
           {/* Subheadline */}
@@ -41,9 +40,9 @@ export function HeroSection() {
               </Link>
             </Button>
             <Button variant="neutral" className="text-xl px-8 py-6" asChild>
-              <Link href="/pricing">
+              <a href="#pricing">
                 {t("ctaSecondary")}
-              </Link>
+              </a>
             </Button>
           </div>
 

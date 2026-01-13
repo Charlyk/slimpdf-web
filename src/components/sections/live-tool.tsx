@@ -18,7 +18,11 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { SlimPdfClient, type CompressionQuality, type JobResult } from "@/lib/slimpdf-client/dist"
+import { SlimPdfClient, type CompressionQuality, type JobResult, type RateLimitInfo } from "@/lib/slimpdf-client/dist"
+
+const API_URL = process.env.NODE_ENV === "production"
+  ? "https://api.slimpdf.io"
+  : "https://dev.api.slimpdf.io"
 
 type Tool = "compress" | "merge" | "image-to-pdf"
 type ProcessingState = "idle" | "selected" | "processing" | "complete" | "error"
@@ -40,14 +44,24 @@ function formatFileSize(bytes: number): string {
 }
 
 // Create a single client instance
-const client = new SlimPdfClient({
-  environment: process.env.NODE_ENV === "production" ? "production" : "development",
-})
+const client = new SlimPdfClient({ baseUrl: API_URL })
+
+// Rate limit display component
+function RateLimitDisplay({ rateLimit }: { rateLimit: RateLimitInfo }) {
+  const t = useTranslations("home.liveTool.rateLimit")
+
+  return (
+    <p className="mt-3 text-sm text-muted-foreground">
+      {t("remaining", { remaining: rateLimit.remaining, limit: rateLimit.limit })}
+    </p>
+  )
+}
 
 // Result view components
 interface ResultViewProps {
   onDownload: () => void
   onReset: () => void
+  rateLimit?: RateLimitInfo
 }
 
 interface CompressResultProps extends ResultViewProps {
@@ -56,7 +70,7 @@ interface CompressResultProps extends ResultViewProps {
   reduction: number
 }
 
-function CompressResult({ originalSize, compressedSize, reduction, onDownload, onReset }: CompressResultProps) {
+function CompressResult({ originalSize, compressedSize, reduction, onDownload, onReset, rateLimit }: CompressResultProps) {
   const t = useTranslations("home.liveTool.complete")
 
   return (
@@ -74,8 +88,9 @@ function CompressResult({ originalSize, compressedSize, reduction, onDownload, o
         {t("download")}
       </Button>
       <button onClick={onReset} className="mt-3 text-sm font-heading text-main hover:underline cursor-pointer">
-        {t("compressAnother")}
+        {t("another")}
       </button>
+      {rateLimit && <RateLimitDisplay rateLimit={rateLimit} />}
     </div>
   )
 }
@@ -85,7 +100,7 @@ interface MergeResultProps extends ResultViewProps {
   outputSize: number
 }
 
-function MergeResult({ fileCount, outputSize, onDownload, onReset }: MergeResultProps) {
+function MergeResult({ fileCount, outputSize, onDownload, onReset, rateLimit }: MergeResultProps) {
   const t = useTranslations("home.liveTool.complete")
 
   return (
@@ -103,8 +118,9 @@ function MergeResult({ fileCount, outputSize, onDownload, onReset }: MergeResult
         {t("download")}
       </Button>
       <button onClick={onReset} className="mt-3 text-sm font-heading text-main hover:underline cursor-pointer">
-        {t("mergeAnother")}
+        {t("another")}
       </button>
+      {rateLimit && <RateLimitDisplay rateLimit={rateLimit} />}
     </div>
   )
 }
@@ -114,7 +130,7 @@ interface ConvertResultProps extends ResultViewProps {
   outputSize: number
 }
 
-function ConvertResult({ imageCount, outputSize, onDownload, onReset }: ConvertResultProps) {
+function ConvertResult({ imageCount, outputSize, onDownload, onReset, rateLimit }: ConvertResultProps) {
   const t = useTranslations("home.liveTool.complete")
 
   return (
@@ -132,8 +148,9 @@ function ConvertResult({ imageCount, outputSize, onDownload, onReset }: ConvertR
         {t("download")}
       </Button>
       <button onClick={onReset} className="mt-3 text-sm font-heading text-main hover:underline cursor-pointer">
-        {t("convertAnother")}
+        {t("another")}
       </button>
+      {rateLimit && <RateLimitDisplay rateLimit={rateLimit} />}
     </div>
   )
 }
@@ -146,6 +163,7 @@ export function LiveToolSection() {
   const [progress, setProgress] = useState(0)
   const [error, setError] = useState<string | null>(null)
   const [result, setResult] = useState<{ originalSize: number; compressedSize: number; reduction: number } | null>(null)
+  const [rateLimit, setRateLimit] = useState<RateLimitInfo | undefined>(undefined)
   const jobResultRef = useRef<JobResult | null>(null)
 
   const t = useTranslations("home.liveTool")
@@ -182,9 +200,11 @@ export function LiveToolSection() {
     setState("processing")
     setProgress(0)
     setError(null)
+    setRateLimit(undefined)
 
     try {
-      let jobResult: JobResult
+      let jobId: string
+      let rateLimitInfo: RateLimitInfo | undefined
 
       const pollOptions = {
         onStatusChange: (status: { status: string }) => {
@@ -196,18 +216,40 @@ export function LiveToolSection() {
         },
       }
 
+      // Submit the job and capture rate limit info
       if (selectedTool === "compress") {
-        jobResult = await client.compress.submitAndWait(files[0], { quality }, pollOptions)
+        const response = await client.compress.submit(files[0], { quality })
+        jobId = response.job_id
+        rateLimitInfo = response.rateLimit
       } else if (selectedTool === "merge") {
-        jobResult = await client.merge.submitAndWait(files, pollOptions)
+        const response = await client.merge.submit(files)
+        jobId = response.job_id
+        rateLimitInfo = response.rateLimit
       } else {
-        jobResult = await client.imageToPdf.submitAndWait(files, { pageSize: "original" }, pollOptions)
+        const response = await client.imageToPdf.submit(files, { pageSize: "original" })
+        jobId = response.job_id
+        rateLimitInfo = response.rateLimit
       }
 
-      setProgress(100)
-      jobResultRef.current = jobResult
+      setProgress(25)
 
-      const { original_size, output_size, reduction_percent } = jobResult.status
+      // Wait for completion
+      const status = await client.jobs.waitForCompletion(jobId, pollOptions)
+
+      setProgress(100)
+
+      // Store job result for download
+      jobResultRef.current = {
+        status,
+        download: () => client.jobs.download(jobId),
+      }
+
+      // Store rate limit info
+      if (rateLimitInfo) {
+        setRateLimit(rateLimitInfo)
+      }
+
+      const { original_size, output_size, reduction_percent } = status
       setResult({
         originalSize: original_size || files.reduce((sum, f) => sum + f.size, 0),
         compressedSize: output_size || 0,
@@ -257,6 +299,7 @@ export function LiveToolSection() {
     setProgress(0)
     setResult(null)
     setError(null)
+    setRateLimit(undefined)
     jobResultRef.current = null
   }
 
@@ -289,8 +332,8 @@ export function LiveToolSection() {
                   >
                     <input type="file" accept={currentTool.accept} multiple={selectedTool !== "compress"} onChange={handleFilesSelected} className="hidden" />
                     <Upload className="size-10 text-foreground" />
-                    <p className="mt-4 font-heading">{t("dropzone.title")}</p>
-                    <p className="mt-1 text-sm">{t("dropzone.limits")}</p>
+                    <p className="mt-4 font-heading">{t(`dropzone.${currentTool.labelKey}.title`)}</p>
+                    <p className="mt-1 text-sm">{t(`dropzone.${currentTool.labelKey}.limits`)}</p>
                   </label>
                 )}
 
@@ -312,12 +355,12 @@ export function LiveToolSection() {
 
                     {selectedTool === "compress" && (
                       <div className="flex items-center gap-3">
-                        <span className="text-sm font-heading">{t("quality.label")}</span>
+                        <span className="text-sm font-heading">{t("compress.qualityLabel")}</span>
                         <Tabs value={quality} onValueChange={(v) => setQuality(v as CompressionQuality)}>
                           <TabsList>
                             {qualityKeys.map((key) => (
                               <TabsTrigger key={key} value={key} className="text-sm">
-                                {t(`quality.${key}`)}
+                                {t(`compress.quality.${key}`)}
                               </TabsTrigger>
                             ))}
                           </TabsList>
@@ -326,9 +369,9 @@ export function LiveToolSection() {
                     )}
 
                     <Button onClick={handleProcess} className="w-full">
-                      {selectedTool === "compress" && t("actions.compressPdf")}
-                      {selectedTool === "merge" && t("actions.mergePdfs")}
-                      {selectedTool === "image-to-pdf" && t("actions.convertToPdf")}
+                      {selectedTool === "compress" && t("actions.compress")}
+                      {selectedTool === "merge" && t("actions.merge")}
+                      {selectedTool === "image-to-pdf" && t("actions.convert")}
                     </Button>
                   </div>
                 )}
@@ -366,6 +409,7 @@ export function LiveToolSection() {
                         reduction={result.reduction}
                         onDownload={handleDownload}
                         onReset={handleReset}
+                        rateLimit={rateLimit}
                       />
                     )}
                     {selectedTool === "merge" && (
@@ -374,6 +418,7 @@ export function LiveToolSection() {
                         outputSize={result.compressedSize}
                         onDownload={handleDownload}
                         onReset={handleReset}
+                        rateLimit={rateLimit}
                       />
                     )}
                     {selectedTool === "image-to-pdf" && (
@@ -382,6 +427,7 @@ export function LiveToolSection() {
                         outputSize={result.compressedSize}
                         onDownload={handleDownload}
                         onReset={handleReset}
+                        rateLimit={rateLimit}
                       />
                     )}
                   </>

@@ -1,17 +1,15 @@
 "use client"
 
-import { Lock, Zap, Trash2, ShieldCheck, Award, Users } from "lucide-react"
+import { Lock, Trash2, Database, ShieldCheck } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import { Card, CardContent } from "@/components/ui/card"
 
 const trustItems = [
   { key: "encryption", icon: Lock },
-  { key: "instant", icon: Zap },
   { key: "autoDelete", icon: Trash2 },
+  { key: "noStorage", icon: Database },
   { key: "gdpr", icon: ShieldCheck },
-  { key: "professional", icon: Award },
-  { key: "trusted", icon: Users },
 ]
 
 export function TrustSignalsSection() {
@@ -28,7 +26,7 @@ export function TrustSignalsSection() {
         </div>
 
         {/* Trust Grid */}
-        <div className="mx-auto mt-12 grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {trustItems.map((item) => (
             <Card key={item.key}>
               <CardContent className="p-6 text-center">

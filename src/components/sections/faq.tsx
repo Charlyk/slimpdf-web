@@ -9,19 +9,14 @@ import {
 } from "@/components/ui/accordion"
 
 const faqKeys = [
-  "browserTools",
+  "difference",
   "security",
   "targetSize",
   "watermarks",
-  "quality",
-  "specificSizes",
+  "api",
   "signup",
   "platforms",
-  "largePdf",
-  "email",
   "batch",
-  "fileSizes",
-  "apiAccess",
 ]
 
 export function FAQSection() {

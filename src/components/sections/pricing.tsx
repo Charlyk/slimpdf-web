@@ -10,28 +10,12 @@ import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
 
-const plans = [
-  {
-    key: "free",
-    price: { monthly: 0, yearly: 0 },
-    featureKeys: ["filesPerDay", "maxFileSize", "compression", "downloadLinks"],
-    popular: false,
-    enterprise: false,
-  },
-  {
-    key: "pro",
-    price: { monthly: 9, yearly: 49 },
-    featureKeys: ["unlimitedFiles", "maxFileSize", "targetSize", "batchProcessing", "apiAccess", "downloadLinks", "priorityProcessing"],
-    popular: true,
-    enterprise: false,
-  },
-  {
-    key: "business",
-    price: { monthly: 0, yearly: 0 },
-    featureKeys: ["everythingInPro", "unlimitedFileSize", "dedicatedSupport", "customIntegrations", "sla", "onPremise"],
-    popular: false,
-    enterprise: true,
-  },
+type PlanKey = "free" | "pro" | "business"
+
+const planConfigs: { key: PlanKey; popular: boolean; enterprise: boolean }[] = [
+  { key: "free", popular: false, enterprise: false },
+  { key: "pro", popular: true, enterprise: false },
+  { key: "business", popular: false, enterprise: true },
 ]
 
 export function PricingSection() {
@@ -39,8 +23,18 @@ export function PricingSection() {
   const isYearly = billingPeriod === "yearly"
   const t = useTranslations("home.pricing")
 
+  const getPrice = (planKey: PlanKey) => {
+    if (planKey === "free") return t("plans.free.price")
+    if (planKey === "business") return t("plans.business.price")
+    return isYearly ? t("plans.pro.priceYearly") : t("plans.pro.priceMonthly")
+  }
+
+  const getFeatures = (planKey: PlanKey) => {
+    return t.raw(`plans.${planKey}.features`) as string[]
+  }
+
   return (
-    <section className="border-y-[3px] border-border bg-secondary-background py-20 sm:py-32">
+    <section id="pricing" className="border-y-[3px] border-border bg-secondary-background py-20 sm:py-32 scroll-mt-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center">
@@ -66,65 +60,62 @@ export function PricingSection() {
 
         {/* Pricing Cards */}
         <div className="mx-auto mt-12 grid max-w-6xl gap-8 md:grid-cols-3 items-stretch">
-          {plans.map((plan) => (
-            <Card
-              key={plan.key}
-              className={cn(
-                "relative flex flex-col",
-                plan.popular && "border-main"
-              )}
-            >
-              {plan.popular && (
-                <Badge className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
-                  {t("mostPopular")}
-                </Badge>
-              )}
-              <CardHeader>
-                <CardTitle className="text-2xl">{t(`plans.${plan.key}.name`)}</CardTitle>
-                <CardDescription className="text-xl">{t(`plans.${plan.key}.description`)}</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1">
-                <div className="mb-6">
-                  {plan.enterprise ? (
-                    <span className="text-4xl font-heading">{t("custom")}</span>
-                  ) : (
-                    <>
-                      <span className="text-4xl font-heading">
-                        ${plan.price.monthly === 0 ? 0 : isYearly ? plan.price.yearly : plan.price.monthly}
-                      </span>
-                      {plan.price.monthly > 0 && (
-                        <span className="text-sm">{isYearly ? t("period.year") : t("period.month")}</span>
-                      )}
-                    </>
-                  )}
-                </div>
-                {plan.price.monthly > 0 && isYearly && !plan.enterprise && (
-                  <p className="mb-6 text-base">{t("billedAnnually")}</p>
+          {planConfigs.map((plan) => {
+            const features = getFeatures(plan.key)
+            const price = getPrice(plan.key)
+
+            return (
+              <Card
+                key={plan.key}
+                className={cn(
+                  "relative flex flex-col",
+                  plan.popular && "border-main"
                 )}
-                <ul className="space-y-3">
-                  {plan.featureKeys.map((featureKey) => (
-                    <li key={featureKey} className="flex items-start gap-3 text-base">
-                      <Check className="mt-0.5 size-4 shrink-0 text-chart-1" />
-                      <span>{t(`plans.${plan.key}.features.${featureKey}`)}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-              <CardFooter className="flex-col gap-3">
+              >
                 {plan.popular && (
-                  <p className="text-center text-base">
-                    {t("trialInfo")}
-                  </p>
+                  <Badge className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
+                    {t("mostPopular")}
+                  </Badge>
                 )}
-                <Button
-                  variant={plan.popular ? "default" : "neutral"}
-                  className="w-full text-xl py-6"
-                >
-                  {t(`plans.${plan.key}.cta`)}
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
+                <CardHeader>
+                  <CardTitle className="text-2xl">{t(`plans.${plan.key}.name`)}</CardTitle>
+                  <CardDescription className="text-xl">{t(`plans.${plan.key}.description`)}</CardDescription>
+                </CardHeader>
+                <CardContent className="flex-1">
+                  <div className="mb-6">
+                    <span className="text-4xl font-heading">{price}</span>
+                    {plan.key === "pro" && (
+                      <span className="text-sm">{isYearly ? t("period.year") : t("period.month")}</span>
+                    )}
+                  </div>
+                  {plan.key === "pro" && isYearly && (
+                    <p className="mb-6 text-base">{t("billedAnnually")}</p>
+                  )}
+                  <ul className="space-y-3">
+                    {features.map((feature, index) => (
+                      <li key={index} className="flex items-start gap-3 text-base">
+                        <Check className="mt-0.5 size-4 shrink-0 text-chart-1" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+                <CardFooter className="flex-col gap-3">
+                  {plan.popular && (
+                    <p className="text-center text-base">
+                      {t("guarantee")}
+                    </p>
+                  )}
+                  <Button
+                    variant={plan.popular ? "default" : "neutral"}
+                    className="w-full text-xl py-6"
+                  >
+                    {t(`plans.${plan.key}.cta`)}
+                  </Button>
+                </CardFooter>
+              </Card>
+            )
+          })}
         </div>
       </div>
     </section>

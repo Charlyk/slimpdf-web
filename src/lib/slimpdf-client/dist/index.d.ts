@@ -7,25 +7,9 @@ type JobStatus = 'pending' | 'processing' | 'completed' | 'failed';
 type ToolType = 'compress' | 'merge' | 'image_to_pdf';
 type Plan = 'free' | 'pro';
 type BillingInterval = 'month' | 'year';
-type ApiEnvironment = 'development' | 'production';
-/** Production API URL */
-declare const API_URL_PRODUCTION = "https://api.slimpdf.io";
-/** Development API URL */
-declare const API_URL_DEVELOPMENT = "https://dev.api.slimpdf.io";
 interface ClientOptions {
-    /**
-     * Base URL of the SlimPDF API.
-     * If not provided, will be determined by the `environment` option.
-     * @example 'https://api.slimpdf.io'
-     */
-    baseUrl?: string;
-    /**
-     * API environment to use. Defaults to 'production'.
-     * - 'production': https://api.slimpdf.io
-     * - 'development': https://dev.api.slimpdf.io
-     * Ignored if `baseUrl` is provided.
-     */
-    environment?: ApiEnvironment;
+    /** Base URL of the SlimPDF API (e.g., 'https://api.slimpdf.io') */
+    baseUrl: string;
     /** Optional access token (JWT or API key) for authenticated requests */
     accessToken?: string;
     /** Optional custom fetch function for testing or custom implementations */
@@ -75,22 +59,40 @@ interface VerifyResponse {
     plan: Plan;
     is_pro: boolean;
 }
+/**
+ * Rate limit information returned from API responses.
+ * Only present for free tier users - Pro users have unlimited access.
+ */
+interface RateLimitInfo {
+    /** Maximum requests allowed per day */
+    limit: number;
+    /** Requests remaining in current period */
+    remaining: number;
+    /** Unix timestamp when the limit resets (midnight UTC) */
+    resetAt: number;
+}
 interface CompressResponse {
     job_id: string;
     status: string;
     message: string;
+    /** Rate limit info (only present for free tier users) */
+    rateLimit?: RateLimitInfo;
 }
 interface MergeResponse {
     job_id: string;
     status: string;
     message: string;
     file_count: number;
+    /** Rate limit info (only present for free tier users) */
+    rateLimit?: RateLimitInfo;
 }
 interface ImageToPdfResponse {
     job_id: string;
     status: string;
     message: string;
     image_count: number;
+    /** Rate limit info (only present for free tier users) */
+    rateLimit?: RateLimitInfo;
 }
 interface JobStatusResponse {
     job_id: string;
@@ -375,16 +377,9 @@ declare class ApiKeysClient {
  *
  * @example
  * ```typescript
- * // Using environment (recommended)
- * const client = new SlimPdfClient({
- *   environment: 'production', // or 'development'
- *   accessToken: 'your-jwt-or-api-key', // optional
- * });
- *
- * // Or with explicit baseUrl
  * const client = new SlimPdfClient({
  *   baseUrl: 'https://api.slimpdf.io',
- *   accessToken: 'your-jwt-or-api-key',
+ *   accessToken: 'your-jwt-or-api-key', // optional
  * });
  *
  * // Compress a PDF
@@ -415,7 +410,7 @@ declare class SlimPdfClient {
     readonly billing: BillingClient;
     /** API key management (Pro) */
     readonly apiKeys: ApiKeysClient;
-    constructor(options?: ClientOptions);
+    constructor(options: ClientOptions);
     /**
      * Set the access token for authenticated requests
      * Can be a JWT token or an API key (sk_live_...)
@@ -506,4 +501,4 @@ declare class JobFailedError extends SlimPdfError {
     constructor(jobId: string, errorMessage: string);
 }
 
-export { API_URL_DEVELOPMENT, API_URL_PRODUCTION, type ApiEnvironment, type ApiKey, type ApiKeyCreateResponse, ApiKeysClient, AuthClient, type AuthTokenResponse, AuthenticationError, BillingClient, type BillingInterval, type CheckoutResponse, type ClientOptions, CompressClient, type CompressOptions, type CompressResponse, type CompressionQuality, type ErrorResponse, FileSizeError, ForbiddenError, ImageToPdfClient, type ImageToPdfOptions, type ImageToPdfResponse, JobExpiredError, JobFailedError, type JobResult, type JobStatus, type JobStatusResponse, JobsClient, type MeResponse, MergeClient, type MergeResponse, NotFoundError, type PageSize, type Plan, type PollOptions, PollingTimeoutError, type PortalResponse, ProcessingError, RateLimitError, SlimPdfClient, SlimPdfError, type ToolType, type UsageResponse, type UsageStats, type User, ValidationError, type VerifyResponse };
+export { type ApiKey, type ApiKeyCreateResponse, ApiKeysClient, AuthClient, type AuthTokenResponse, AuthenticationError, BillingClient, type BillingInterval, type CheckoutResponse, type ClientOptions, CompressClient, type CompressOptions, type CompressResponse, type CompressionQuality, type ErrorResponse, FileSizeError, ForbiddenError, ImageToPdfClient, type ImageToPdfOptions, type ImageToPdfResponse, JobExpiredError, JobFailedError, type JobResult, type JobStatus, type JobStatusResponse, JobsClient, type MeResponse, MergeClient, type MergeResponse, NotFoundError, type PageSize, type Plan, type PollOptions, PollingTimeoutError, type PortalResponse, ProcessingError, RateLimitError, type RateLimitInfo, SlimPdfClient, SlimPdfError, type ToolType, type UsageResponse, type UsageStats, type User, ValidationError, type VerifyResponse };

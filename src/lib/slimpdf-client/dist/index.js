@@ -1,7 +1,3 @@
-// src/types.ts
-var API_URL_PRODUCTION = "https://api.slimpdf.io";
-var API_URL_DEVELOPMENT = "https://dev.api.slimpdf.io";
-
 // src/errors.ts
 var SlimPdfError = class _SlimPdfError extends Error {
   constructor(statusCode, message, detail) {
@@ -120,8 +116,21 @@ async function handleErrorResponse(response) {
 }
 
 // src/endpoints/base.ts
+function parseRateLimitHeaders(response) {
+  const limit = response.headers.get("X-RateLimit-Limit");
+  const remaining = response.headers.get("X-RateLimit-Remaining");
+  const resetAt = response.headers.get("X-RateLimit-Reset");
+  if (!limit || !remaining || !resetAt) {
+    return void 0;
+  }
+  return {
+    limit: parseInt(limit, 10),
+    remaining: parseInt(remaining, 10),
+    resetAt: parseInt(resetAt, 10)
+  };
+}
 async function request(ctx, method, path, options = {}) {
-  const { body, query, headers: customHeaders } = options;
+  const { body, query, headers: customHeaders, includeRateLimit } = options;
   let url = `${ctx.baseUrl}${path}`;
   if (query) {
     const params = new URLSearchParams();
@@ -151,7 +160,14 @@ async function request(ctx, method, path, options = {}) {
   if (!response.ok) {
     await handleErrorResponse(response);
   }
-  return response.json();
+  const data = await response.json();
+  if (includeRateLimit) {
+    const rateLimit = parseRateLimitHeaders(response);
+    if (rateLimit) {
+      data.rateLimit = rateLimit;
+    }
+  }
+  return data;
 }
 async function requestBlob(ctx, method, path) {
   const url = `${ctx.baseUrl}${path}`;
@@ -292,7 +308,8 @@ var CompressClient = class {
       target_size_mb: options.targetSizeMb
     });
     return request(this.ctx, "POST", "/v1/compress", {
-      body: formData
+      body: formData,
+      includeRateLimit: true
     });
   }
   /**
@@ -330,7 +347,8 @@ var MergeClient = class {
   async submit(files) {
     const formData = createMultiFileFormData("files", files);
     return request(this.ctx, "POST", "/v1/merge", {
-      body: formData
+      body: formData,
+      includeRateLimit: true
     });
   }
   /**
@@ -373,7 +391,8 @@ var ImageToPdfClient = class {
       page_size: options.pageSize
     });
     return request(this.ctx, "POST", "/v1/image-to-pdf", {
-      body: formData
+      body: formData,
+      includeRateLimit: true
     });
   }
   /**
@@ -501,11 +520,10 @@ var ApiKeysClient = class {
 
 // src/client.ts
 var SlimPdfClient = class {
-  constructor(options = {}) {
+  constructor(options) {
     this._accessToken = options.accessToken;
-    const baseUrl = options.baseUrl ?? (options.environment === "development" ? API_URL_DEVELOPMENT : API_URL_PRODUCTION);
     this.ctx = {
-      baseUrl: baseUrl.replace(/\/$/, ""),
+      baseUrl: options.baseUrl.replace(/\/$/, ""),
       // Remove trailing slash
       getAccessToken: () => this._accessToken,
       fetch: options.fetch || globalThis.fetch.bind(globalThis)
@@ -539,6 +557,6 @@ var SlimPdfClient = class {
   }
 };
 
-export { API_URL_DEVELOPMENT, API_URL_PRODUCTION, ApiKeysClient, AuthClient, AuthenticationError, BillingClient, CompressClient, FileSizeError, ForbiddenError, ImageToPdfClient, JobExpiredError, JobFailedError, JobsClient, MergeClient, NotFoundError, PollingTimeoutError, ProcessingError, RateLimitError, SlimPdfClient, SlimPdfError, ValidationError };
+export { ApiKeysClient, AuthClient, AuthenticationError, BillingClient, CompressClient, FileSizeError, ForbiddenError, ImageToPdfClient, JobExpiredError, JobFailedError, JobsClient, MergeClient, NotFoundError, PollingTimeoutError, ProcessingError, RateLimitError, SlimPdfClient, SlimPdfError, ValidationError };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map
