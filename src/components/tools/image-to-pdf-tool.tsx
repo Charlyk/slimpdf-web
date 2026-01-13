@@ -2,7 +2,6 @@
 
 import { useState, useRef } from "react"
 import {
-  ImageIcon,
   X,
   Download,
   CheckCircle2,
@@ -299,6 +298,7 @@ export function ImageToPdfTool({ className }: ImageToPdfToolProps) {
                   )}
                 >
                   <div className="aspect-square relative">
+                    {/* eslint-disable-next-line @next/next/no-img-element -- Using blob URL from user upload, not compatible with next/image */}
                     <img
                       src={image.preview}
                       alt={image.file.name}
