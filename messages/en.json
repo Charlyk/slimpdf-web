@@ -74,10 +74,20 @@
         "title": "Processing..."
       },
       "complete": {
-        "title": "Compression complete!",
+        "compressTitle": "Compression complete!",
+        "mergeTitle": "Merge complete!",
+        "convertTitle": "Conversion complete!",
         "reduction": "{percent}% smaller",
+        "mergedFiles": "{count} files merged",
+        "convertedImages": "{count} images converted",
         "download": "Download PDF",
-        "compressAnother": "Compress another file"
+        "compressAnother": "Compress another file",
+        "mergeAnother": "Merge more files",
+        "convertAnother": "Convert more images"
+      },
+      "error": {
+        "title": "Something went wrong",
+        "tryAgain": "Try again"
       }
     },
     "useCases": {

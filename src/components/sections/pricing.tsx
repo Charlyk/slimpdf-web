@@ -54,7 +54,7 @@ export function PricingSection() {
           {/* Billing Toggle */}
           <Tabs value={billingPeriod} onValueChange={(v) => setBillingPeriod(v as "monthly" | "yearly")} className="mt-8">
             <div className="flex justify-center">
-              <TabsList>
+              <TabsList className="h-auto">
                 <TabsTrigger value="monthly" className="text-lg">{t("billingToggle.monthly")}</TabsTrigger>
                 <TabsTrigger value="yearly" className="text-lg">
                   {t("billingToggle.yearly")} <span className="ml-1 font-bold">{t("billingToggle.yearlyDiscount")}</span>
