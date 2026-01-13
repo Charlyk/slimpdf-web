@@ -1,15 +1,15 @@
-import { FilePlus, ImageIcon, ArrowRight } from "lucide-react"
+import { FileDown, ImageIcon, ArrowRight } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 
 import { Link } from "@/i18n/routing"
 
 const toolItems = [
-  { key: "merge", icon: FilePlus, href: "/merge-pdf" },
+  { key: "compress", icon: FileDown, href: "/compress" },
   { key: "imageToPdf", icon: ImageIcon, href: "/image-to-pdf" },
 ]
 
-export async function CompressRelatedTools() {
-  const t = await getTranslations("compress.relatedTools")
+export async function MergeRelatedTools() {
+  const t = await getTranslations("merge.relatedTools")
 
   return (
     <section className="py-16 sm:py-24">

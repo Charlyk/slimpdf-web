@@ -8,19 +8,19 @@ import {
 
 const faqKeys = [
   "quality",
-  "howMuch",
-  "email",
+  "order",
+  "pageCount",
   "secure",
-  "batch",
-  "api",
   "encrypted",
+  "different",
+  "api",
   "size",
   "mobile",
-  "offline",
+  "batch",
 ]
 
-export async function CompressFAQ() {
-  const t = await getTranslations("compress.faq")
+export async function MergeFAQ() {
+  const t = await getTranslations("merge.faq")
 
   return (
     <section className="border-t-[3px] border-border py-16 sm:py-24">

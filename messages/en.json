@@ -664,7 +664,7 @@
         "cost": {
           "feature": "Price",
           "browser": "Free (limited)",
-          "adobe": "$13/month",
+          "adobe": "$18/month",
           "slimpdf": "Free or $9/mo"
         },
         "signup": {
@@ -772,6 +772,662 @@
       ],
       "ctaPrimary": "Compress PDF Free",
       "ctaSecondary": "Get Pro for Target Sizes"
+    }
+  },
+  "merge": {
+    "metadata": {
+      "title": "Merge PDF Online Free - Combine PDFs Fast | SlimPDF",
+      "description": "Merge PDF files online free. Combine multiple PDFs into one document in seconds. Drag to reorder. No signup, no watermarks, files auto-deleted."
+    },
+    "hero": {
+      "badge": "Server-powered PDF combining",
+      "title": "Merge PDF Online",
+      "titleHighlight": "Combine Multiple PDFs",
+      "subtitle": "Combine PDF files into one document in seconds. Drag to reorder pages, preview before merging. No quality loss, no watermarks, no signup required.",
+      "ctaPrimary": "Merge PDFs Free",
+      "ctaSecondary": "View Pricing",
+      "trustIndicator": "Over {count} PDFs merged"
+    },
+    "tool": {
+      "dropzone": {
+        "title": "Drop PDFs here or click to browse",
+        "subtitle": "Up to 5 files free · Unlimited with Pro",
+        "dragActive": "Drop your PDFs here"
+      },
+      "fileList": {
+        "title": "Files to merge",
+        "reorderHint": "Drag to reorder",
+        "removeFile": "Remove"
+      },
+      "actions": {
+        "merge": "Merge PDFs",
+        "merging": "Merging..."
+      },
+      "processing": {
+        "uploading": "Uploading...",
+        "merging": "Combining PDFs...",
+        "optimizing": "Optimizing...",
+        "almostDone": "Finalizing..."
+      },
+      "result": {
+        "title": "Merge Complete!",
+        "fileCount": "{count} PDFs combined",
+        "totalPages": "{count} pages total",
+        "fileSize": "Final size: {size}",
+        "download": "Download Merged PDF",
+        "another": "Merge More PDFs",
+        "shareResult": "Share result"
+      },
+      "error": {
+        "title": "Merge Failed",
+        "fileTooLarge": "Total size exceeds {max}MB. Upgrade to Pro for larger merges.",
+        "tooManyFiles": "Maximum {max} files on free tier. Upgrade to Pro for unlimited.",
+        "invalidType": "Please upload PDF files only",
+        "encrypted": "One or more PDFs are password-protected. Remove passwords first.",
+        "corrupted": "One or more PDFs appear corrupted or invalid.",
+        "generic": "Something went wrong. Please try again.",
+        "tryAgain": "Try Again"
+      },
+      "rateLimit": {
+        "remaining": "{remaining} of {limit} free merges today",
+        "exceeded": "Daily limit reached",
+        "resetTime": "Resets in {hours} hours",
+        "upgradePrompt": "Upgrade to Pro for unlimited"
+      }
+    },
+    "useCases": {
+      "title": "Combine PDFs For Any Purpose",
+      "items": {
+        "reports": {
+          "title": "Merge Reports & Invoices",
+          "description": "Combine monthly reports, invoices, or financial documents into one organized file for archiving, sharing, or printing."
+        },
+        "presentations": {
+          "title": "Combine Presentations",
+          "description": "Merge slide decks from multiple presenters into one cohesive presentation. Perfect for team meetings and conferences."
+        },
+        "contracts": {
+          "title": "Merge Contracts & Appendices",
+          "description": "Combine contracts, terms, signature pages, and appendices into a single complete document for signing and distribution."
+        },
+        "portfolios": {
+          "title": "Create PDF Portfolios",
+          "description": "Combine work samples, certificates, resumes, and cover letters into professional portfolios for job applications."
+        }
+      }
+    },
+    "fileTypes": {
+      "title": "Combine Any Type of PDF",
+      "subtitle": "Merge different PDF types seamlessly",
+      "items": {
+        "scanned": {
+          "title": "Scanned Documents",
+          "description": "Combine scanned pages, receipts, and paper documents converted to PDF."
+        },
+        "text": {
+          "title": "Word & Text PDFs",
+          "description": "Merge Word exports, reports, essays, and text-based PDF documents."
+        },
+        "forms": {
+          "title": "Forms & Applications",
+          "description": "Combine filled forms, applications, tax documents, and government forms."
+        },
+        "images": {
+          "title": "Image PDFs",
+          "description": "Merge photo albums, catalogs, brochures, and image-heavy documents."
+        },
+        "presentations": {
+          "title": "PowerPoint Exports",
+          "description": "Combine exported presentations, slide decks, and pitch documents."
+        },
+        "mixed": {
+          "title": "Mixed Content",
+          "description": "Merge any combination of PDF types into one unified document."
+        }
+      },
+      "cta": "Get Pro for Unlimited Files"
+    },
+    "platforms": {
+      "title": "Merge PDFs On Any Device",
+      "subtitle": "No software installation needed",
+      "items": {
+        "mac": {
+          "title": "Merge PDF on Mac",
+          "description": "Works in Safari, Chrome, Firefox on macOS. Better than Preview's clunky merge."
+        },
+        "windows": {
+          "title": "Merge PDF on Windows",
+          "description": "Works in any browser on Windows 10/11. No Adobe Acrobat needed."
+        },
+        "linux": {
+          "title": "Merge PDF on Linux",
+          "description": "Full support for Chrome and Firefox on Ubuntu, Fedora, and all distros."
+        },
+        "mobile": {
+          "title": "Merge PDF on iPhone & Android",
+          "description": "Combine PDFs directly from your phone browser. No app required."
+        }
+      }
+    },
+    "features": {
+      "title": "Why Merge PDFs With SlimPDF?",
+      "items": {
+        "dragReorder": {
+          "title": "Drag to Reorder",
+          "description": "Arrange files in any order by dragging. See the final order before merging."
+        },
+        "preserveQuality": {
+          "title": "Quality Preserved",
+          "description": "Merged PDFs keep original resolution, fonts, links, and formatting intact."
+        },
+        "largeMerges": {
+          "title": "Unlimited File Merging",
+          "description": "Pro users can combine unlimited files at once. No page limits, no restrictions."
+        },
+        "fast": {
+          "title": "Fast Server Processing",
+          "description": "Server-side merging handles large files in seconds. No browser crashes."
+        },
+        "secure": {
+          "title": "Private & Secure",
+          "description": "256-bit encryption. Files auto-deleted after processing. We never read your content."
+        },
+        "free": {
+          "title": "Free to Start",
+          "description": "Merge up to 5 PDFs per day free. No signup, no watermarks."
+        }
+      }
+    },
+    "howItWorks": {
+      "title": "How to Merge PDF Files Online",
+      "steps": {
+        "upload": {
+          "number": "1",
+          "title": "Upload Your PDFs",
+          "description": "Drag and drop or click to select. Up to 5 files free, 50 with Pro."
+        },
+        "arrange": {
+          "number": "2",
+          "title": "Arrange File Order",
+          "description": "Drag to reorder files. The merged PDF follows your arrangement."
+        },
+        "download": {
+          "number": "3",
+          "title": "Download Combined PDF",
+          "description": "Click merge and download instantly. No registration required."
+        }
+      }
+    },
+    "comparison": {
+      "title": "SlimPDF vs Other PDF Combiners",
+      "headers": {
+        "feature": "Feature",
+        "browser": "Browser Tools",
+        "adobe": "Adobe Acrobat",
+        "slimpdf": "SlimPDF"
+      },
+      "rows": {
+        "fileLimit": {
+          "feature": "Files per merge",
+          "browser": "2-10 files",
+          "adobe": "Unlimited",
+          "slimpdf": "Unlimited"
+        },
+        "fileSize": {
+          "feature": "Max file size",
+          "browser": "10-20MB",
+          "adobe": "Unlimited",
+          "slimpdf": "100MB"
+        },
+        "reorder": {
+          "feature": "Drag to reorder",
+          "browser": "Sometimes",
+          "adobe": "Yes",
+          "slimpdf": "Yes"
+        },
+        "cost": {
+          "feature": "Price",
+          "browser": "Free (limited)",
+          "adobe": "$18/month",
+          "slimpdf": "Free or $9/mo"
+        },
+        "signup": {
+          "feature": "Signup required",
+          "browser": "Sometimes",
+          "adobe": "Yes",
+          "slimpdf": "No"
+        },
+        "watermark": {
+          "feature": "Watermarks",
+          "browser": "Often",
+          "adobe": "No",
+          "slimpdf": "Never"
+        }
+      }
+    },
+    "seoContent": {
+      "title": "The Easiest Way to Combine PDF Files Online",
+      "content": [
+        {
+          "heading": "Why Combine Multiple PDFs?",
+          "text": "Combining PDFs creates one organized document from multiple files. This is essential for creating complete document packages, assembling contracts with attachments, merging scanned pages into one file, or building portfolios. A single merged PDF is easier to share, email, print, and archive."
+        },
+        {
+          "heading": "How PDF Merging Works",
+          "text": "When you merge PDFs with SlimPDF, we combine internal page structures without re-encoding content. This preserves original quality, fonts, hyperlinks, and formatting. Unlike tools that convert pages to images, our server-side processing maintains full document fidelity."
+        },
+        {
+          "heading": "Combining Scanned and Digital PDFs",
+          "text": "Both scanned documents (image-based) and digital PDFs (text-based) combine seamlessly. Scanned pages stay as images while digital pages keep their searchable text and vector graphics. The combined output maintains each page's original characteristics."
+        },
+        {
+          "heading": "Tips for Merging PDF Files",
+          "text": "Before merging, check that all PDFs are oriented correctly. Consider compressing large files first to keep the combined PDF manageable. For documents with many pages, arrange files carefully since the merge follows your exact order. Pro users can combine unlimited files at once."
+        }
+      ]
+    },
+    "faq": {
+      "title": "PDF Merge FAQ",
+      "items": {
+        "quality": {
+          "question": "Will merging reduce PDF quality?",
+          "answer": "No. SlimPDF preserves original quality when combining PDFs. Text stays sharp, images stay clear, and all formatting is maintained. We merge page structures without re-encoding."
+        },
+        "order": {
+          "question": "Can I change the page order before merging?",
+          "answer": "Yes. After uploading, drag files to arrange them in any order. The combined PDF follows your exact arrangement."
+        },
+        "pageCount": {
+          "question": "Is there a limit on pages?",
+          "answer": "No page limit. Free users can merge up to 5 files per day. Pro users can merge unlimited files with no daily limit."
+        },
+        "secure": {
+          "question": "Are my PDFs secure when merging?",
+          "answer": "Yes. All uploads use 256-bit SSL encryption. Files are processed in isolated containers and auto-deleted after 1 hour (free) or 24 hours (Pro)."
+        },
+        "encrypted": {
+          "question": "Can I merge password-protected PDFs?",
+          "answer": "You need to remove passwords first. Use our PDF Unlock tool to remove protection, then merge the unlocked files."
+        },
+        "different": {
+          "question": "Can I merge PDFs with different page sizes?",
+          "answer": "Yes. PDFs with different page sizes (A4, Letter, custom) merge perfectly. Each page keeps its original dimensions in the combined file."
+        },
+        "api": {
+          "question": "Can I merge PDFs via API?",
+          "answer": "Yes. Pro subscribers get REST API access. Upload multiple files via HTTP POST, receive a merged PDF. See our API docs for examples."
+        },
+        "size": {
+          "question": "What's the maximum file size for merging?",
+          "answer": "Free tier: 20MB per file. Pro tier: 100MB per file. Total combined size limit is 200MB for Pro users."
+        },
+        "mobile": {
+          "question": "Can I merge PDFs on my phone?",
+          "answer": "Yes. SlimPDF works in mobile browsers on iPhone and Android. Upload files, arrange order, and download the merged PDF."
+        },
+        "batch": {
+          "question": "How many PDFs can I merge at once?",
+          "answer": "Free: up to 5 PDFs per merge. Pro: unlimited PDFs at once. Perfect for combining large document packages."
+        }
+      }
+    },
+    "relatedTools": {
+      "title": "More PDF Tools",
+      "items": {
+        "compress": {
+          "title": "Compress PDF",
+          "description": "Reduce merged PDF size up to 90%"
+        },
+        "imageToPdf": {
+          "title": "Image to PDF",
+          "description": "Convert JPG, PNG images to PDF"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Combine Your PDFs?",
+      "subtitle": "Drop your files above or scroll up to get started",
+      "benefits": [
+        "No signup required",
+        "No watermarks ever",
+        "Files auto-deleted"
+      ],
+      "ctaPrimary": "Merge PDFs Free",
+      "ctaSecondary": "Get Pro for Unlimited"
+    }
+  },
+  "imageToPdf": {
+    "metadata": {
+      "title": "Image to PDF Converter Online Free - JPG to PDF | SlimPDF",
+      "description": "Convert JPG to PDF online free. Turn PNG, WebP images into PDF documents. Combine multiple images, choose page size. No signup, no watermarks."
+    },
+    "hero": {
+      "badge": "Server-powered JPG to PDF conversion",
+      "title": "Image to PDF",
+      "titleHighlight": "Convert JPG, PNG to PDF Free",
+      "subtitle": "Convert JPG to PDF, PNG to PDF, or any image format to PDF online. Combine multiple images into one document, choose page sizes, arrange order. No watermarks, no signup.",
+      "ctaPrimary": "Convert to PDF Free",
+      "ctaSecondary": "View Pricing",
+      "trustIndicator": "Over {count} images converted"
+    },
+    "tool": {
+      "dropzone": {
+        "title": "Drop images here or click to browse",
+        "subtitle": "JPG, PNG, WebP · Up to 10 images free · Unlimited with Pro",
+        "dragActive": "Drop your images here"
+      },
+      "fileList": {
+        "title": "Images to convert",
+        "reorderHint": "Drag to reorder pages",
+        "removeFile": "Remove"
+      },
+      "pageSize": {
+        "label": "Page size",
+        "a4": "A4 (210 × 297mm)",
+        "letter": "Letter (8.5 × 11in)",
+        "original": "Original size",
+        "fit": "Fit to page"
+      },
+      "orientation": {
+        "label": "Orientation",
+        "auto": "Auto-detect",
+        "portrait": "Portrait",
+        "landscape": "Landscape"
+      },
+      "actions": {
+        "convert": "Convert to PDF",
+        "converting": "Converting..."
+      },
+      "processing": {
+        "uploading": "Uploading...",
+        "converting": "Converting images to PDF...",
+        "optimizing": "Optimizing...",
+        "almostDone": "Finalizing..."
+      },
+      "result": {
+        "title": "Conversion Complete!",
+        "imageCount": "{count} images converted to PDF",
+        "pageCount": "{count} pages",
+        "fileSize": "PDF size: {size}",
+        "download": "Download PDF",
+        "another": "Convert More Images",
+        "shareResult": "Share result"
+      },
+      "error": {
+        "title": "Conversion Failed",
+        "fileTooLarge": "Total size exceeds {max}MB. Upgrade to Pro for larger files.",
+        "tooManyFiles": "Maximum {max} images on free tier. Upgrade to Pro for unlimited.",
+        "invalidType": "Please upload images (JPG, PNG, WebP, GIF, BMP, TIFF)",
+        "corrupted": "One or more images appear corrupted or invalid.",
+        "generic": "Something went wrong. Please try again.",
+        "tryAgain": "Try Again"
+      },
+      "rateLimit": {
+        "remaining": "{remaining} of {limit} free conversions today",
+        "exceeded": "Daily limit reached",
+        "resetTime": "Resets in {hours} hours",
+        "upgradePrompt": "Upgrade to Pro for unlimited"
+      }
+    },
+    "useCases": {
+      "title": "Convert Images to PDF For Any Purpose",
+      "items": {
+        "documents": {
+          "title": "Photo to PDF for Documents",
+          "description": "Convert photos of documents, receipts, IDs, and forms into PDF files. Perfect for digitizing paperwork and submitting scanned documents online."
+        },
+        "portfolios": {
+          "title": "Create Photo Portfolios",
+          "description": "Combine photos into a professional PDF portfolio. Great for photographers, artists, and designers sharing their work with clients."
+        },
+        "presentations": {
+          "title": "Images to PDF Presentation",
+          "description": "Turn image slides into a PDF presentation. Each image becomes a page. Share slideshows without needing PowerPoint."
+        },
+        "archives": {
+          "title": "Combine Pictures into One PDF",
+          "description": "Merge related images into a single PDF for easier storage, sharing, and printing. Keep collections organized in one file."
+        }
+      }
+    },
+    "formats": {
+      "title": "Convert Any Image Format to PDF",
+      "subtitle": "JPG to PDF, PNG to PDF, and more",
+      "items": {
+        "jpg": {
+          "title": "JPG to PDF",
+          "description": "Convert JPG and JPEG photos to PDF. Most common format for photos and scans."
+        },
+        "png": {
+          "title": "PNG to PDF",
+          "description": "Convert PNG images to PDF. Ideal for screenshots, graphics, and images with transparency."
+        },
+        "webp": {
+          "title": "WebP to PDF",
+          "description": "Convert WebP images to PDF. Modern format with excellent quality and compression."
+        },
+        "heic": {
+          "title": "HEIC to PDF",
+          "description": "Convert iPhone HEIC photos to PDF. No need to convert to JPG first."
+        },
+        "tiff": {
+          "title": "TIFF to PDF",
+          "description": "Convert TIFF images to PDF. Common in scanning and professional publishing."
+        },
+        "bmp": {
+          "title": "BMP to PDF",
+          "description": "Convert BMP bitmap images to PDF. Legacy format still used in some workflows."
+        }
+      },
+      "cta": "Get Pro for Unlimited Images"
+    },
+    "platforms": {
+      "title": "Convert Images to PDF On Any Device",
+      "subtitle": "No software installation needed",
+      "items": {
+        "mac": {
+          "title": "Image to PDF on Mac",
+          "description": "Works in Safari, Chrome, Firefox on macOS. Easier than Preview's export."
+        },
+        "windows": {
+          "title": "Image to PDF on Windows",
+          "description": "Works in any browser on Windows 10/11. No Microsoft Print to PDF hassle."
+        },
+        "linux": {
+          "title": "Image to PDF on Linux",
+          "description": "Full support for Chrome and Firefox on Ubuntu, Fedora, and all distros."
+        },
+        "mobile": {
+          "title": "Image to PDF on iPhone & Android",
+          "description": "Convert photos to PDF directly from your phone. No app download required."
+        }
+      }
+    },
+    "features": {
+      "title": "Why Convert Images to PDF With SlimPDF?",
+      "items": {
+        "multipleImages": {
+          "title": "Combine Multiple Images",
+          "description": "Convert unlimited images at once with Pro. Each image becomes a page in your PDF."
+        },
+        "pageSize": {
+          "title": "Choose Page Size",
+          "description": "A4, Letter, or original dimensions. Images scale to fit your chosen page size."
+        },
+        "preserveQuality": {
+          "title": "Quality Preserved",
+          "description": "Images keep their original resolution and clarity. No compression artifacts added."
+        },
+        "dragReorder": {
+          "title": "Drag to Reorder",
+          "description": "Arrange images in any order by dragging. PDF pages follow your arrangement."
+        },
+        "secure": {
+          "title": "Private & Secure",
+          "description": "256-bit encryption. Files auto-deleted after processing. We never access your images."
+        },
+        "free": {
+          "title": "Free to Start",
+          "description": "Convert up to 10 images per day free. No signup, no watermarks."
+        }
+      }
+    },
+    "howItWorks": {
+      "title": "How to Convert Images to PDF Online",
+      "steps": {
+        "upload": {
+          "number": "1",
+          "title": "Upload Your Images",
+          "description": "Drag and drop or click to select. JPG, PNG, WebP, HEIC, and more."
+        },
+        "arrange": {
+          "number": "2",
+          "title": "Arrange & Set Page Size",
+          "description": "Drag to reorder pages. Choose A4, Letter, or original dimensions."
+        },
+        "download": {
+          "number": "3",
+          "title": "Download Your PDF",
+          "description": "Click convert and download instantly. No registration required."
+        }
+      }
+    },
+    "comparison": {
+      "title": "SlimPDF vs Other Image to PDF Converters",
+      "headers": {
+        "feature": "Feature",
+        "browser": "Browser Tools",
+        "adobe": "Adobe Acrobat",
+        "slimpdf": "SlimPDF"
+      },
+      "rows": {
+        "imageLimit": {
+          "feature": "Images per conversion",
+          "browser": "5-20 images",
+          "adobe": "Unlimited",
+          "slimpdf": "Unlimited"
+        },
+        "formats": {
+          "feature": "Formats supported",
+          "browser": "JPG, PNG",
+          "adobe": "All formats",
+          "slimpdf": "JPG, PNG, WebP, HEIC, TIFF, BMP"
+        },
+        "pageSize": {
+          "feature": "Custom page size",
+          "browser": "Limited",
+          "adobe": "Yes",
+          "slimpdf": "A4, Letter, Original"
+        },
+        "cost": {
+          "feature": "Price",
+          "browser": "Free (limited)",
+          "adobe": "$18/month",
+          "slimpdf": "Free or $9/mo"
+        },
+        "signup": {
+          "feature": "Signup required",
+          "browser": "Sometimes",
+          "adobe": "Yes",
+          "slimpdf": "No"
+        },
+        "watermark": {
+          "feature": "Watermarks",
+          "browser": "Often",
+          "adobe": "No",
+          "slimpdf": "Never"
+        }
+      }
+    },
+    "seoContent": {
+      "title": "The Easiest Way to Convert Images to PDF",
+      "content": [
+        {
+          "heading": "Why Convert JPG to PDF?",
+          "text": "PDF is the universal document format that works on any device. Converting JPG images to PDF makes them easier to share, print, and archive. Multiple photos become pages in a single document, keeping your images organized and in the right order."
+        },
+        {
+          "heading": "JPG to PDF vs PNG to PDF",
+          "text": "Both JPG and PNG convert perfectly to PDF. Use JPG to PDF for photos, scans, and images where file size matters. Use PNG to PDF for screenshots, graphics, logos, and images with text where sharp edges are important. SlimPDF preserves quality for both."
+        },
+        {
+          "heading": "Choosing Page Size for Image to PDF",
+          "text": "A4 (210 × 297mm) is the international standard for printing. Letter (8.5 × 11in) is the US standard. Original size keeps your image dimensions exactly as they are. Choose based on whether you plan to print or just view digitally."
+        },
+        {
+          "heading": "Tips for Converting Photos to PDF",
+          "text": "Use high-resolution images for best results. Low-resolution photos will appear pixelated. For document photos, ensure good lighting and focus. If the resulting PDF is too large, use our compress tool to reduce file size while maintaining quality."
+        }
+      ]
+    },
+    "faq": {
+      "title": "Image to PDF Conversion FAQ",
+      "items": {
+        "quality": {
+          "question": "Will converting to PDF reduce image quality?",
+          "answer": "No. SlimPDF preserves original image quality. Your photos look exactly the same in the PDF as standalone files. No compression is applied during conversion."
+        },
+        "order": {
+          "question": "Can I arrange the page order?",
+          "answer": "Yes. After uploading, drag images to arrange them. PDF pages will follow your exact order."
+        },
+        "formats": {
+          "question": "What image formats can I convert to PDF?",
+          "answer": "SlimPDF supports JPG, JPEG, PNG, WebP, HEIC (iPhone), TIFF, BMP, and GIF. For animated GIFs, only the first frame is converted."
+        },
+        "pageSize": {
+          "question": "Can I set the PDF page size?",
+          "answer": "Yes. Choose A4 (international), Letter (US), or Original to keep your image's exact dimensions as the page size."
+        },
+        "secure": {
+          "question": "Are my images secure?",
+          "answer": "Yes. All uploads use 256-bit encryption. Files are processed in isolated containers and auto-deleted after 1 hour (free) or 24 hours (Pro)."
+        },
+        "multiple": {
+          "question": "How many images can I convert to PDF at once?",
+          "answer": "Free: up to 10 images per PDF. Pro: unlimited images per conversion. Each image becomes one page."
+        },
+        "api": {
+          "question": "Can I convert images to PDF via API?",
+          "answer": "Yes. Pro subscribers get REST API access. Upload images via HTTP POST, receive a PDF. See our API docs for examples."
+        },
+        "size": {
+          "question": "What's the maximum image size?",
+          "answer": "Free: 20MB per image, 100MB total. Pro: 50MB per image, 500MB total."
+        },
+        "mobile": {
+          "question": "Can I convert photos to PDF on my phone?",
+          "answer": "Yes. SlimPDF works in mobile browsers. Upload photos from your camera roll and download the PDF directly."
+        },
+        "transparency": {
+          "question": "What happens to transparent PNG images?",
+          "answer": "Transparent areas become white in the PDF. PDF format doesn't support transparency the way PNG does."
+        }
+      }
+    },
+    "relatedTools": {
+      "title": "More PDF Tools",
+      "items": {
+        "compress": {
+          "title": "Compress PDF",
+          "description": "Reduce converted PDF size up to 90%"
+        },
+        "merge": {
+          "title": "Merge PDF",
+          "description": "Combine multiple PDFs into one"
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Convert Images to PDF?",
+      "subtitle": "Drop your images above or scroll up to get started",
+      "benefits": [
+        "No signup required",
+        "No watermarks ever",
+        "Files auto-deleted"
+      ],
+      "ctaPrimary": "Convert to PDF Free",
+      "ctaSecondary": "Get Pro for Unlimited"
     }
   }
 }

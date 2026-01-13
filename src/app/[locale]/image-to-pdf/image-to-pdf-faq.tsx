@@ -8,19 +8,19 @@ import {
 
 const faqKeys = [
   "quality",
-  "howMuch",
-  "email",
+  "order",
+  "formats",
+  "pageSize",
   "secure",
-  "batch",
+  "multiple",
   "api",
-  "encrypted",
   "size",
   "mobile",
-  "offline",
+  "transparency",
 ]
 
-export async function CompressFAQ() {
-  const t = await getTranslations("compress.faq")
+export async function ImageToPdfFAQ() {
+  const t = await getTranslations("imageToPdf.faq")
 
   return (
     <section className="border-t-[3px] border-border py-16 sm:py-24">

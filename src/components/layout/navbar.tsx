@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils"
 
 const navLinkKeys = [
   { href: "/compress", key: "compress" },
-  { href: "/merge", key: "merge" },
+  { href: "/merge-pdf", key: "merge" },
   { href: "/image-to-pdf", key: "imageToPdf" },
   { href: "#pricing", key: "pricing" },
   { href: "/docs/api", key: "api" },

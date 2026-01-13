@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 const footerLinkKeys = {
   tools: [
     { href: "/compress", key: "compressPdf" },
-    { href: "/merge", key: "mergePdf" },
+    { href: "/merge-pdf", key: "mergePdf" },
     { href: "/image-to-pdf", key: "imageToPdf" },
     { href: "/docs/api", key: "apiDocs" },
   ],
