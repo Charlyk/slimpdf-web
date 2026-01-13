@@ -19,13 +19,11 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { SlimPdfClient, RateLimitError, type CompressionQuality, type JobResult, type RateLimitInfo, type SupportedLanguage } from "@/lib/slimpdf-client/dist"
+import { SlimPdfClient, RateLimitError, type CompressionQuality, type JobResult, type RateLimitInfo, type SupportedLanguage, type ApiEnvironment } from "@/lib/slimpdf-client/dist"
 import { QuotaInfo } from "@/components/tools/quota-info"
 import { Link } from "@/i18n/routing"
 
-const API_URL = process.env.NODE_ENV === "production"
-  ? "https://api.slimpdf.io"
-  : "https://dev.api.slimpdf.io"
+const API_ENVIRONMENT = (process.env.NEXT_PUBLIC_API_ENVIRONMENT as ApiEnvironment) || "production"
 
 type Tool = "compress" | "merge" | "image-to-pdf"
 type ProcessingState = "idle" | "selected" | "processing" | "complete" | "error"
@@ -47,7 +45,7 @@ function formatFileSize(bytes: number): string {
 }
 
 // Create a single client instance
-const client = new SlimPdfClient({ baseUrl: API_URL })
+const client = new SlimPdfClient({ environment: API_ENVIRONMENT })
 
 // Rate limit display component
 function RateLimitDisplay({ rateLimit }: { rateLimit: RateLimitInfo }) {

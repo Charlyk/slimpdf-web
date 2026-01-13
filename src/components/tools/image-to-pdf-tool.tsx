@@ -19,13 +19,11 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
-import { SlimPdfClient, RateLimitError, type PageSize, type JobResult, type RateLimitInfo, type SupportedLanguage } from "@/lib/slimpdf-client/dist"
+import { SlimPdfClient, RateLimitError, type PageSize, type JobResult, type RateLimitInfo, type SupportedLanguage, type ApiEnvironment } from "@/lib/slimpdf-client/dist"
 import { cn } from "@/lib/utils"
 import { Link } from "@/i18n/routing"
 
-const API_URL = process.env.NODE_ENV === "production"
-  ? "https://api.slimpdf.io"
-  : "https://dev.api.slimpdf.io"
+const API_ENVIRONMENT = (process.env.NEXT_PUBLIC_API_ENVIRONMENT as ApiEnvironment) || "production"
 
 type ProcessingState = "idle" | "selected" | "processing" | "complete" | "error"
 
@@ -46,7 +44,7 @@ function formatFileSize(bytes: number): string {
 }
 
 // Create a single client instance
-const client = new SlimPdfClient({ baseUrl: API_URL })
+const client = new SlimPdfClient({ environment: API_ENVIRONMENT })
 
 interface ImageToPdfToolProps {
   className?: string

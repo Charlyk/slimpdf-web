@@ -7,6 +7,8 @@ import { useTranslations } from "next-intl"
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { useAuth } from "@/context/auth-context"
+import { UserMenu } from "@/components/auth/user-menu"
 
 const navLinkKeys = [
   { href: "/compress", key: "compress" },
@@ -20,6 +22,7 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const t = useTranslations("navbar.links")
   const tCommon = useTranslations("common")
+  const { isAuthenticated } = useAuth()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b-[3px] border-border bg-secondary-background">
@@ -47,12 +50,18 @@ export function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden items-center gap-3 md:flex">
-          <Button variant="neutral" size="sm" asChild>
-            <Link href="/login">{tCommon("logIn")}</Link>
-          </Button>
-          <Button size="sm" asChild>
-            <Link href="/compress">{tCommon("getStarted")}</Link>
-          </Button>
+          {isAuthenticated ? (
+            <UserMenu />
+          ) : (
+            <>
+              <Button variant="neutral" size="sm" asChild>
+                <Link href="/login">{tCommon("logIn")}</Link>
+              </Button>
+              <Button size="sm" asChild>
+                <Link href="/compress">{tCommon("getStarted")}</Link>
+              </Button>
+            </>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -79,12 +88,20 @@ export function Navbar() {
             </Link>
           ))}
           <div className="mt-4 flex flex-col gap-2 border-t-[3px] border-border pt-4">
-            <Button variant="neutral" asChild>
-              <Link href="/login">{tCommon("logIn")}</Link>
-            </Button>
-            <Button asChild>
-              <Link href="/compress">{tCommon("getStarted")}</Link>
-            </Button>
+            {isAuthenticated ? (
+              <div className="flex justify-center">
+                <UserMenu />
+              </div>
+            ) : (
+              <>
+                <Button variant="neutral" asChild>
+                  <Link href="/login">{tCommon("logIn")}</Link>
+                </Button>
+                <Button asChild>
+                  <Link href="/compress">{tCommon("getStarted")}</Link>
+                </Button>
+              </>
+            )}
           </div>
         </nav>
       </div>

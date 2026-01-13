@@ -1,3 +1,7 @@
+// src/types.ts
+var API_URL_PRODUCTION = "https://api.slimpdf.io";
+var API_URL_DEVELOPMENT = "https://dev.api.slimpdf.io";
+
 // src/errors.ts
 var SlimPdfError = class _SlimPdfError extends Error {
   constructor(statusCode, message, detail) {
@@ -423,16 +427,23 @@ var AuthClient = class {
     this.ctx = ctx;
   }
   /**
-   * Authenticate with Google OAuth
-   * Exchange a Google ID token for a SlimPDF JWT access token.
+   * Authenticate with Firebase
+   * Exchange a Firebase ID token for a SlimPDF JWT access token.
+   * Supports all Firebase auth providers (Google, Apple, email/password, etc.).
    *
-   * @param idToken - Google ID token from Google Sign-In
+   * @param idToken - Firebase ID token from Firebase Auth
    * @returns Auth response with access_token and user info
    */
-  async loginWithGoogle(idToken) {
-    return request(this.ctx, "POST", "/v1/auth/google", {
+  async loginWithFirebase(idToken) {
+    return request(this.ctx, "POST", "/v1/auth/firebase", {
       body: { id_token: idToken }
     });
+  }
+  /**
+   * @deprecated Use `loginWithFirebase` instead. This method will be removed in a future version.
+   */
+  async loginWithGoogle(idToken) {
+    return this.loginWithFirebase(idToken);
   }
   /**
    * Get current user info and usage stats
@@ -523,11 +534,12 @@ var ApiKeysClient = class {
 
 // src/client.ts
 var SlimPdfClient = class {
-  constructor(options) {
+  constructor(options = {}) {
     this._accessToken = options.accessToken;
     this._language = options.language || "en";
+    const baseUrl = options.baseUrl ?? (options.environment === "development" ? API_URL_DEVELOPMENT : API_URL_PRODUCTION);
     this.ctx = {
-      baseUrl: options.baseUrl.replace(/\/$/, ""),
+      baseUrl: baseUrl.replace(/\/$/, ""),
       // Remove trailing slash
       getAccessToken: () => this._accessToken,
       getLanguage: () => this._language,
@@ -575,6 +587,6 @@ var SlimPdfClient = class {
   }
 };
 
-export { ApiKeysClient, AuthClient, AuthenticationError, BillingClient, CompressClient, FileSizeError, ForbiddenError, ImageToPdfClient, JobExpiredError, JobFailedError, JobsClient, MergeClient, NotFoundError, PollingTimeoutError, ProcessingError, RateLimitError, SlimPdfClient, SlimPdfError, ValidationError };
+export { API_URL_DEVELOPMENT, API_URL_PRODUCTION, ApiKeysClient, AuthClient, AuthenticationError, BillingClient, CompressClient, FileSizeError, ForbiddenError, ImageToPdfClient, JobExpiredError, JobFailedError, JobsClient, MergeClient, NotFoundError, PollingTimeoutError, ProcessingError, RateLimitError, SlimPdfClient, SlimPdfError, ValidationError };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

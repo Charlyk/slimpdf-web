@@ -1110,6 +1110,38 @@
       "ctaSecondary": "Get Pro for Unlimited"
     }
   },
+  "userMenu": {
+    "account": "Account",
+    "dashboard": "Dashboard",
+    "apiKeys": "API Keys",
+    "billing": "Billing",
+    "settings": "Settings",
+    "signOut": "Sign out"
+  },
+  "login": {
+    "metadata": {
+      "title": "Log In | SlimPDF",
+      "description": "Log in to SlimPDF to access Pro features, manage your account, and track your usage."
+    },
+    "brandName": "SlimPDF",
+    "title": "Welcome back",
+    "subtitle": "Sign in to access your account and Pro features",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithGithub": "Continue with GitHub",
+    "signingIn": "Signing in...",
+    "noAccountNeeded": "No account needed for free tools. Sign in to unlock Pro features and track usage.",
+    "backToHome": "Back to home",
+    "terms": {
+      "prefix": "By continuing, you agree to our",
+      "termsOfService": "Terms of Service",
+      "and": "and",
+      "privacyPolicy": "Privacy Policy"
+    },
+    "errors": {
+      "authFailed": "Authentication failed. Please try again.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
   "imageToPdf": {
     "metadata": {
       "title": "Image to PDF Converter Online Free - JPG to PDF | SlimPDF",
