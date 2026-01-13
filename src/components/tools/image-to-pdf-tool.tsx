@@ -10,6 +10,7 @@ import {
   Upload,
   AlertCircle,
   GripVertical,
+  Zap,
 } from "lucide-react"
 import { useTranslations, useLocale } from "next-intl"
 
@@ -18,8 +19,9 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
-import { SlimPdfClient, type PageSize, type JobResult, type RateLimitInfo, type SupportedLanguage } from "@/lib/slimpdf-client/dist"
+import { SlimPdfClient, RateLimitError, type PageSize, type JobResult, type RateLimitInfo, type SupportedLanguage } from "@/lib/slimpdf-client/dist"
 import { cn } from "@/lib/utils"
+import { Link } from "@/i18n/routing"
 
 const API_URL = process.env.NODE_ENV === "production"
   ? "https://api.slimpdf.io"
@@ -61,6 +63,7 @@ export function ImageToPdfTool({ className }: ImageToPdfToolProps) {
   const [state, setState] = useState<ProcessingState>("idle")
   const [progress, setProgress] = useState(0)
   const [error, setError] = useState<string | null>(null)
+  const [isRateLimitError, setIsRateLimitError] = useState(false)
   const [result, setResult] = useState<{ imageCount: number; totalSize: number } | null>(null)
   const [rateLimit, setRateLimit] = useState<RateLimitInfo | undefined>(undefined)
   const [isDragOver, setIsDragOver] = useState(false)
@@ -69,6 +72,7 @@ export function ImageToPdfTool({ className }: ImageToPdfToolProps) {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const t = useTranslations("imageToPdf.tool")
+  const tCommon = useTranslations("common.rateLimitError")
   const locale = useLocale()
 
   // Set language for API responses
@@ -195,6 +199,11 @@ export function ImageToPdfTool({ className }: ImageToPdfToolProps) {
       setState("complete")
     } catch (err) {
       console.error("Conversion error:", err)
+      if (err instanceof RateLimitError) {
+        setIsRateLimitError(true)
+      } else {
+        setIsRateLimitError(false)
+      }
       setError(err instanceof Error ? err.message : t("error.generic"))
       setState("error")
     }
@@ -226,6 +235,7 @@ export function ImageToPdfTool({ className }: ImageToPdfToolProps) {
     setProgress(0)
     setResult(null)
     setError(null)
+    setIsRateLimitError(false)
     setRateLimit(undefined)
     jobResultRef.current = null
     if (inputRef.current) {
@@ -377,11 +387,29 @@ export function ImageToPdfTool({ className }: ImageToPdfToolProps) {
         {state === "error" && (
           <div className="py-12 text-center">
             <AlertCircle className="mx-auto size-12 text-destructive" />
-            <p className="mt-4 text-lg font-heading">{t("error.title")}</p>
-            <p className="mt-2 text-muted-foreground">{error}</p>
-            <Button onClick={handleReset} variant="neutral" className="mt-6">
-              {t("error.tryAgain")}
-            </Button>
+            <p className="mt-4 text-lg font-heading">
+              {isRateLimitError ? tCommon("title") : t("error.title")}
+            </p>
+            <p className="mt-2 text-muted-foreground">
+              {isRateLimitError ? tCommon("message") : error}
+            </p>
+            {isRateLimitError ? (
+              <>
+                <Button asChild className="mt-6 text-xl px-8 py-6">
+                  <Link href="#pricing">
+                    <Zap className="size-5" />
+                    {tCommon("upgradeButton")}
+                  </Link>
+                </Button>
+                <p className="mt-4 text-sm text-muted-foreground">
+                  {tCommon("tryAgainTomorrow")}
+                </p>
+              </>
+            ) : (
+              <Button onClick={handleReset} variant="neutral" className="mt-6 text-xl px-8 py-6">
+                {t("error.tryAgain")}
+              </Button>
+            )}
           </div>
         )}
 

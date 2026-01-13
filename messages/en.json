@@ -11,7 +11,18 @@
     "compressPdf": "Compress PDF",
     "mergePdf": "Merge PDF",
     "imageToPdf": "Image to PDF",
-    "downloadPdf": "Download PDF"
+    "downloadPdf": "Download PDF",
+    "quota": {
+      "freeLimit": "Free tier: {limit} files per day",
+      "upgradeHint": "Upgrade to Pro for unlimited processing, larger files, and API access.",
+      "upgradeButton": "Remove Limits"
+    },
+    "rateLimitError": {
+      "title": "Daily Limit Reached",
+      "message": "You've used all your free conversions for today. Upgrade to Pro for unlimited access.",
+      "upgradeButton": "Upgrade for Unlimited",
+      "tryAgainTomorrow": "Or try again tomorrow"
+    }
   },
   "navbar": {
     "links": {
@@ -75,7 +86,8 @@
         "quality": {
           "low": "Maximum (smallest file)",
           "medium": "Balanced",
-          "high": "Minimum (best quality)"
+          "high": "Light compression",
+          "maximum": "Best quality"
         },
         "targetSize": {
           "label": "Target file size",
@@ -442,8 +454,10 @@
         "lowDesc": "Smallest file, ideal for email and web",
         "medium": "Balanced",
         "mediumDesc": "Good compression with quality preservation",
-        "high": "Minimum compression",
-        "highDesc": "Best quality, modest size reduction"
+        "high": "Light compression",
+        "highDesc": "Higher quality, moderate size reduction",
+        "maximum": "Best quality",
+        "maximumDesc": "Minimal compression, highest quality output"
       },
       "targetSize": {
         "label": "Target file size",

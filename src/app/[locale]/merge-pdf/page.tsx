@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { MergeTool } from "@/components/tools/merge-tool"
+import { QuotaInfo } from "@/components/tools/quota-info"
 import { PricingSection } from "@/components/sections/pricing"
 import { MergeHero } from "./merge-hero"
 import { MergeUseCases } from "./merge-use-cases"
@@ -155,6 +156,7 @@ export default function MergePdfPage() {
           <section id="merge-tool" className="border-t-[3px] border-border bg-secondary-background py-16 sm:py-20 scroll-mt-20">
             <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
               <MergeTool />
+              <QuotaInfo tool="merge" />
             </div>
           </section>
 

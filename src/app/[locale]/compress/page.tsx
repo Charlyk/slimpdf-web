@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { CompressTool } from "@/components/tools/compress-tool"
+import { QuotaInfo } from "@/components/tools/quota-info"
 import { PricingSection } from "@/components/sections/pricing"
 import { CompressHero } from "./compress-hero"
 import { CompressUseCases } from "./compress-use-cases"
@@ -155,6 +156,7 @@ export default function CompressPage() {
           <section id="compress-tool" className="border-t-[3px] border-border bg-secondary-background py-16 sm:py-20 scroll-mt-20">
             <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
               <CompressTool />
+              <QuotaInfo tool="compress" />
             </div>
           </section>
 

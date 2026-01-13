@@ -1,6 +1,17 @@
 /**
  * SlimPDF Client Types
  */
+/**
+ * Compression quality preset.
+ * Higher compression = lower quality output.
+ *
+ * - `low`: Maximum compression, 50 DPI - smallest files, works on already-compressed PDFs
+ * - `medium`: High compression, 72 DPI - good balance (default)
+ * - `high`: Medium compression, 100 DPI - better quality
+ * - `maximum`: Light compression, 150 DPI - best quality
+ *
+ * Note: If compression would increase file size, the original is returned.
+ */
 type CompressionQuality = 'low' | 'medium' | 'high' | 'maximum';
 type PageSize = 'a4' | 'letter' | 'original';
 type JobStatus = 'pending' | 'processing' | 'completed' | 'failed';

@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { ImageToPdfTool } from "@/components/tools/image-to-pdf-tool"
+import { QuotaInfo } from "@/components/tools/quota-info"
 import { PricingSection } from "@/components/sections/pricing"
 import { ImageToPdfHero } from "./image-to-pdf-hero"
 import { ImageToPdfUseCases } from "./image-to-pdf-use-cases"
@@ -155,6 +156,7 @@ export default function ImageToPdfPage() {
           <section id="convert-tool" className="border-t-[3px] border-border bg-secondary-background py-16 sm:py-20 scroll-mt-20">
             <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
               <ImageToPdfTool />
+              <QuotaInfo tool="imageToPdf" />
             </div>
           </section>
 

@@ -11,6 +11,7 @@ import {
   Loader2,
   Upload,
   AlertCircle,
+  Zap,
 } from "lucide-react"
 import { useTranslations, useLocale } from "next-intl"
 
@@ -18,7 +19,9 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { SlimPdfClient, type CompressionQuality, type JobResult, type RateLimitInfo, type SupportedLanguage } from "@/lib/slimpdf-client/dist"
+import { SlimPdfClient, RateLimitError, type CompressionQuality, type JobResult, type RateLimitInfo, type SupportedLanguage } from "@/lib/slimpdf-client/dist"
+import { QuotaInfo } from "@/components/tools/quota-info"
+import { Link } from "@/i18n/routing"
 
 const API_URL = process.env.NODE_ENV === "production"
   ? "https://api.slimpdf.io"
@@ -33,7 +36,7 @@ const tools = [
   { id: "image-to-pdf" as Tool, labelKey: "imageToPdf", icon: ImageIcon, accept: ".jpg,.jpeg,.png,.webp" },
 ]
 
-const qualityKeys = ["low", "medium", "high"] as const
+const qualityKeys = ["low", "medium", "high", "maximum"] as const
 
 function formatFileSize(bytes: number): string {
   if (bytes === 0) return "0 B"
@@ -162,11 +165,13 @@ export function LiveToolSection() {
   const [state, setState] = useState<ProcessingState>("idle")
   const [progress, setProgress] = useState(0)
   const [error, setError] = useState<string | null>(null)
+  const [isRateLimitError, setIsRateLimitError] = useState(false)
   const [result, setResult] = useState<{ originalSize: number; compressedSize: number; reduction: number } | null>(null)
   const [rateLimit, setRateLimit] = useState<RateLimitInfo | undefined>(undefined)
   const jobResultRef = useRef<JobResult | null>(null)
 
   const t = useTranslations("home.liveTool")
+  const tCommon = useTranslations("common.rateLimitError")
   const locale = useLocale()
   const currentTool = tools.find((t) => t.id === selectedTool)!
 
@@ -262,6 +267,11 @@ export function LiveToolSection() {
       setState("complete")
     } catch (err) {
       console.error("Processing error:", err)
+      if (err instanceof RateLimitError) {
+        setIsRateLimitError(true)
+      } else {
+        setIsRateLimitError(false)
+      }
       setError(err instanceof Error ? err.message : "An error occurred during processing")
       setState("error")
     }
@@ -303,6 +313,7 @@ export function LiveToolSection() {
     setProgress(0)
     setResult(null)
     setError(null)
+    setIsRateLimitError(false)
     setRateLimit(undefined)
     jobResultRef.current = null
   }
@@ -395,11 +406,29 @@ export function LiveToolSection() {
                 {state === "error" && (
                   <div className="py-8 text-center">
                     <AlertCircle className="mx-auto size-10 text-destructive" />
-                    <p className="mt-4 font-heading">{t("error.title")}</p>
-                    <p className="mt-2 text-sm text-muted-foreground">{error}</p>
-                    <Button onClick={handleReset} variant="neutral" className="mt-4">
-                      {t("error.tryAgain")}
-                    </Button>
+                    <p className="mt-4 font-heading">
+                      {isRateLimitError ? tCommon("title") : t("error.title")}
+                    </p>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      {isRateLimitError ? tCommon("message") : error}
+                    </p>
+                    {isRateLimitError ? (
+                      <>
+                        <Button asChild className="mt-4 text-xl px-8 py-6">
+                          <Link href="#pricing">
+                            <Zap className="size-5" />
+                            {tCommon("upgradeButton")}
+                          </Link>
+                        </Button>
+                        <p className="mt-4 text-sm text-muted-foreground">
+                          {tCommon("tryAgainTomorrow")}
+                        </p>
+                      </>
+                    ) : (
+                      <Button onClick={handleReset} variant="neutral" className="mt-4 text-xl px-8 py-6">
+                        {t("error.tryAgain")}
+                      </Button>
+                    )}
                   </div>
                 )}
 
@@ -438,6 +467,9 @@ export function LiveToolSection() {
                 )}
               </CardContent>
             </Card>
+
+            {/* Quota Info */}
+            <QuotaInfo tool={selectedTool === "image-to-pdf" ? "imageToPdf" : selectedTool} />
           </Tabs>
         </div>
       </div>
