@@ -1130,6 +1130,8 @@
     "continueWithGithub": "Continue with GitHub",
     "signingIn": "Signing in...",
     "noAccountNeeded": "No account needed for free tools. Sign in to unlock Pro features and track usage.",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign up",
     "backToHome": "Back to home",
     "terms": {
       "prefix": "By continuing, you agree to our",
@@ -1139,6 +1141,31 @@
     },
     "errors": {
       "authFailed": "Authentication failed. Please try again.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "register": {
+    "metadata": {
+      "title": "Create Account | SlimPDF",
+      "description": "Create a SlimPDF account to access Pro features, manage your subscription, and track your usage."
+    },
+    "brandName": "SlimPDF",
+    "title": "Create your account",
+    "subtitle": "Sign up to unlock Pro features and track your usage",
+    "continueWithGoogle": "Sign up with Google",
+    "continueWithGithub": "Sign up with GitHub",
+    "signingIn": "Creating account...",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign in",
+    "backToHome": "Back to home",
+    "terms": {
+      "prefix": "By continuing, you agree to our",
+      "termsOfService": "Terms of Service",
+      "and": "and",
+      "privacyPolicy": "Privacy Policy"
+    },
+    "errors": {
+      "authFailed": "Account creation failed. Please try again.",
       "generic": "Something went wrong. Please try again."
     }
   },

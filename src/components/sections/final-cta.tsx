@@ -26,7 +26,7 @@ export function FinalCTASection() {
             {/* CTA Buttons */}
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button className="text-xl px-8 py-6" asChild>
-                <Link href="/compress">{t("ctaPrimary")}</Link>
+                <Link href="/register">{t("ctaPrimary")}</Link>
               </Button>
               <Button variant="neutral" className="text-xl px-8 py-6" asChild>
                 <a href="#pricing">{t("ctaSecondary")}</a>

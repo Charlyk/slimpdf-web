@@ -58,7 +58,7 @@ export function Navbar() {
                 <Link href="/login">{tCommon("logIn")}</Link>
               </Button>
               <Button size="sm" asChild>
-                <Link href="/compress">{tCommon("getStarted")}</Link>
+                <Link href="/register">{tCommon("getStarted")}</Link>
               </Button>
             </>
           )}
@@ -98,7 +98,7 @@ export function Navbar() {
                   <Link href="/login">{tCommon("logIn")}</Link>
                 </Button>
                 <Button asChild>
-                  <Link href="/compress">{tCommon("getStarted")}</Link>
+                  <Link href="/register">{tCommon("getStarted")}</Link>
                 </Button>
               </>
             )}

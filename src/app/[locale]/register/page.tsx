@@ -2,11 +2,11 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import { FileText } from 'lucide-react';
-import { LoginForm } from '@/components/auth/login-form';
+import { RegisterForm } from '@/components/auth/register-form';
 import { ThemeToggle } from '@/components/theme-toggle';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations('login.metadata');
+  const t = await getTranslations('register.metadata');
 
   return {
     title: t('title'),
@@ -14,12 +14,12 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-interface LoginPageProps {
+interface RegisterPageProps {
   searchParams: Promise<{ redirect?: string }>;
 }
 
-export default async function LoginPage({ searchParams }: LoginPageProps) {
-  const t = await getTranslations('login');
+export default async function RegisterPage({ searchParams }: RegisterPageProps) {
+  const t = await getTranslations('register');
   const { redirect } = await searchParams;
 
   return (
@@ -36,20 +36,17 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         </div>
       </header>
 
-      {/* Login content */}
+      {/* Register content */}
       <main className="flex-1 flex items-center justify-center px-4 py-12">
         <div className="w-full max-w-md space-y-8">
-          <LoginForm redirectTo={redirect || '/'} />
+          <RegisterForm redirectTo={redirect || '/'} />
 
           {/* Additional info */}
           <div className="text-center space-y-4">
             <p className="text-base text-muted-foreground">
-              {t('noAccountNeeded')}
-            </p>
-            <p className="text-base text-muted-foreground">
-              {t('noAccount')}{' '}
-              <Link href="/register" className="font-medium text-main hover:underline">
-                {t('signUp')}
+              {t('alreadyHaveAccount')}{' '}
+              <Link href="/login" className="font-medium text-main hover:underline">
+                {t('signIn')}
               </Link>
             </p>
             <Link

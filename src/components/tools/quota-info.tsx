@@ -32,7 +32,7 @@ export function QuotaInfo({ tool }: QuotaInfoProps) {
           </p>
         </div>
         <Button asChild className="shrink-0 text-xl px-8 py-6">
-          <Link href="#pricing">
+          <Link href="/register">
             <Zap className="size-5" />
             {t("upgradeButton")}
           </Link>

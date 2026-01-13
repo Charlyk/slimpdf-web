@@ -34,7 +34,7 @@ export function HeroSection() {
           {/* CTAs */}
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button className="text-xl px-8 py-6" asChild>
-              <Link href="/compress">
+              <Link href="/register">
                 {t("ctaPrimary")}
                 <ArrowRight className="size-5" />
               </Link>
